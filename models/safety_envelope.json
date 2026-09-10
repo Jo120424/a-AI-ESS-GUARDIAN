@@ -1,0 +1,12 @@
+{
+  "target_parameter": "leakage_current_ua",
+  "engineering_limit": 50.0,
+  "data_driven_prototype_limit": 16.563,
+  "healthy_median_early_slope": 0.00846,
+  "healthy_mad_early_slope": 0.00737,
+  "healthy_max_early_slope": 0.04126,
+  "healthy_median_pred_slope": 0.00658,
+  "healthy_mad_pred_slope": 0.00137,
+  "healthy_max_pred_slope": 0.01935,
+  "is_fitted": true
+}

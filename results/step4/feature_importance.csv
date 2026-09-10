@@ -1,0 +1,6 @@
+feature,mean_standardized_deviation,max_standardized_deviation
+delta_esr_pct,1.6008,7.1101
+drift_velocity_esr,1.156,1.8563
+delta_capacitance_pct,1.1145,3.4851
+drift_velocity_c,1.1115,2.6725
+c_to_esr_ratio,1.0932,3.2998

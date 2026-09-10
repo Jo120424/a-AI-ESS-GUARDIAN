@@ -1,0 +1,11 @@
+# Table 3: Master Comparative Performance Matrix (Out-of-Fold LOCO)
+
+| method | total_samples | true_positives | false_positives | false_negatives | true_negatives | accuracy | recall | false_negative_rate | precision | f1_score | false_positive_rate | yield_loss_pct | pr_auc | roc_auc | early_detected_count | total_latent_defects | mean_lead_time_hours | min_lead_time_hours | max_lead_time_hours |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Traditional (MIL-PRF-62F 20%) | 6 | 0 | 0 | 5 | 1 | 0.1667 | 0.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0 | 5 | 0.0 | 0.0 | 0.0 |
+| Traditional (5% Tightened) | 6 | 0 | 0 | 5 | 1 | 0.1667 | 0.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0 | 5 | 0.0 | 0.0 | 0.0 |
+| Dynamic Statistical (MAD/Maha) | 6 | 3 | 1 | 2 | 0 | 0.5 | 0.6 | 0.4 | 0.75 | 0.6667 | 1.0 | 100.0 | 0.81 | 0.2 | 3 | 5 | 139.33 | 124.0 | 147.0 |
+| AI/ML Anomaly (Isolation Forest) | 6 | 0 | 0 | 5 | 1 | 0.1667 | 0.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.8767 | 0.4 | 0 | 5 | 0.0 | 0.0 | 0.0 |
+| AI/ML Anomaly (One-Class SVM) | 6 | 4 | 1 | 1 | 0 | 0.6667 | 0.8 | 0.2 | 0.8 | 0.8 | 1.0 | 100.0 | 0.81 | 0.2 | 4 | 5 | 141.25 | 124.0 | 147.0 |
+| Early Drift Forecast (194h) | 6 | 5 | 1 | 0 | 0 | 0.8333 | 1.0 | 0.0 | 0.8333 | 0.9091 | 1.0 | 100.0 | 0.71 | 0.0 | 5 | 5 | 142.4 | 124.0 | 147.0 |
+| Risk Fusion Engine (Multi-Tier) | 6 | 3 | 1 | 2 | 0 | 0.5 | 0.6 | 0.4 | 0.75 | 0.6667 | 1.0 | 100.0 | 0.7833 | 0.3 | 3 | 5 | 139.33 | 124.0 | 147.0 |

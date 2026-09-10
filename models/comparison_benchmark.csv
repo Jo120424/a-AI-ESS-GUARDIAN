@@ -1,0 +1,5 @@
+Paradigm,TP,FP,FN,TN,Recall,FNR,Precision,F1_Score,FPR,PR_AUC
+BASELINE 1: Static Datasheet Limits (Traditional),3,0,18,69,14.3,85.7,100.0,0.25,0.0,0.8635
+BASELINE 2: Robust Statistical Screening (MAD Z-Score),21,0,0,69,100.0,0.0,100.0,1.0,0.0,1.0
+MODEL: ML Anomaly Detection (Isolation Forest),16,0,5,69,76.2,23.8,100.0,0.8649,0.0,1.0
+HYBRID: AI-ESS GUARDIAN (Static + Anomaly + Drift + Envelope),21,0,0,69,100.0,0.0,100.0,1.0,0.0,1.0

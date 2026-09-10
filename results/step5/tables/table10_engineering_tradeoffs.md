@@ -1,0 +1,11 @@
+# Table 10: Multi-Criteria Engineering Trade-Off Matrix
+
+| Screening Dimension | Traditional Static (MIL-PRF-62F) | Dynamic Statistical | AI/ML Anomaly (OC-SVM) | Early Drift Forecaster | Multi-Tier Risk Fusion |
+| --- | --- | --- | --- | --- | --- |
+| Defect Interception (Recall) | POOR (0.0%) | MODERATE (60.0%) | HIGH (80.0%) | EXCELLENT (100.0%) | EXCELLENT (100.0% quarantine) |
+| Defect Escape Risk (FNR) | CATASTROPHIC (100.0%) | ELEVATED (40.0%) | LOW (20.0%) | ZERO ESCAPE (0.0%) | ZERO ESCAPE (with quarantine) |
+| Production Yield Preservation | PERFECT (100% accepted) | POOR (Survivor flagged) | POOR (Survivor flagged) | POOR (Survivor flagged) | ADAPTABLE (Tiered review) |
+| Early Advance Notice | None (0.0 h) | 139.3 hours | 141.2 hours | 142.4 hours | 139.3 - 142.4 hours |
+| Decision Interpretability | Simple datasheet rule | Standardized Z-scores | Support vector distances | Kinetic regression curve | Transparent multi-factor audit |
+| Computational Footprint | < 1 ms | < 5 ms (matrix inverse) | ~ 10 ms (quadratic QP) | ~ 15 ms (gradient trees) | ~ 20 ms |
+| Implementation Risk | Low (industry default) | Low (standard SPC) | Medium (kernel tuning) | Medium (temporal logging) | Low-Medium (modular) |

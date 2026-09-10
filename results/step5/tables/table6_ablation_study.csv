@@ -1,0 +1,8 @@
+paradigm,description,true_positives,false_positives,false_negatives,true_negatives,recall,false_negative_rate,precision,f1_score,false_positive_rate,pr_auc,mean_lead_time_hours,incremental_recall_vs_trad,incremental_recall_vs_stat
+A: Traditional Static Only,Single baseline MIL-PRF-62F 20% limit,0,0,5,1,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,-0.6
+B: Statistical Outlier Only,Dynamic population MAD + Mahalanobis,3,1,2,0,0.6,0.4,0.75,0.6667,1.0,0.81,139.33,0.6,0.0
+C: AI/ML Anomaly Only (OC-SVM),Spatial boundary learning without time forecasting,4,1,1,0,0.8,0.2,0.8,0.8,1.0,0.81,141.25,0.8,0.2
+D: Early Drift Forecast Only,Parametric time-series extrapolation without spatial clustering,5,1,0,0,1.0,0.0,0.8333,0.9091,1.0,0.71,142.4,1.0,0.4
+E: Anomaly + Drift Combined (OR),Dual AI paradigm coupling,5,1,0,0,1.0,0.0,0.8333,0.9091,1.0,0.81,142.4,1.0,0.4
+F: Full Multi-Tier Risk Fusion,Comprehensive weighted synthesis (Trad + Stat + Anomaly + Drift),3,1,2,0,0.6,0.4,0.75,0.6667,1.0,0.7833,139.33,0.6,0.0
+F-Extended: Fusion (incl. Medium Risk),Fusion with quarantine threshold at 0.25 (extended burn-in),5,1,0,0,1.0,0.0,0.8333,0.9091,1.0,0.7833,142.4,1.0,0.4

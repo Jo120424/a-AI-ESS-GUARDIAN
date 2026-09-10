@@ -1,0 +1,24 @@
+{
+  "dataset_name": "NASA Capacitor Electrical Stress Degradation Dataset",
+  "source_url": "https://data.nasa.gov/docs/legacy/EOS_DataSet.zip",
+  "landing_page": "https://data.nasa.gov/dataset/capacitor-electrical-stress-2",
+  "original_publication": "Celaya, J. R., Kulkarni, C., Biswas, G., & Goebel, K. (2012). Towards A Model-based Prognostics Methodology for Electrolytic Capacitors: A Case Study Based on Electrical Overstress Accelerated Aging. Annual Conference of the PHM Society 2012; and Renwick, J., Kulkarni, C., & Celaya, J. (2015). Analysis of Electrolytic Capacitor Degradation under Electrical Overstress for Prognostic Studies.",
+  "organization": "NASA Ames Research Center, Prognostics Center of Excellence (PCoE)",
+  "access_date": "2026-09-10T16:14:26.165087+00:00",
+  "version": "NASA Open Data Release (EOS_DataSet v2)",
+  "license": "NASA Open Data Policy (Public Domain)",
+  "raw_files": [
+    {
+      "file_name": "EOS_DataSet.zip",
+      "size_bytes": 1648,
+      "sha256": "944cd2284cd01925088e97e5f5e2f337ee8b37800346fd2610d1bbaa6accacfb"
+    },
+    {
+      "file_name": "EOS_DataSet.mat",
+      "size_bytes": 1090,
+      "sha256": "9db651a10f92d2046a477838c08fe1cdbaf27d7bc4062a856a373721400cb4a3"
+    }
+  ],
+  "checksum": "944cd2284cd01925088e97e5f5e2f337ee8b37800346fd2610d1bbaa6accacfb",
+  "notes": "Acquired directly from NASA Open Data Portal. Contains longitudinal aging measurements of Capacitance drift (C) and Equivalent Series Resistance (ESR) across 11 discrete time points (up to 194 hours) for discrete physical capacitor units under 10V accelerated electrical overstress."
+}

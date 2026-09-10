@@ -1,0 +1,102 @@
+category,method,metric,step4_reported_value,reproduced_value,difference,status,explanation
+File Integrity,Filesystem,exists_traditional_predictions.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_statistical_predictions.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_anomaly_predictions.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_drift_predictions.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_risk_predictions.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_component_level_results.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_comparison.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_metrics.csv,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+File Integrity,Filesystem,exists_experiment_metadata.json,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Data Dimension,Master Panel,row_count,6.0000,6.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Data Dimension,Master Panel,component_ids,"['C1', 'C2', 'C3', 'C4', 'C5', 'C6']","['C1', 'C2', 'C3', 'C4', 'C5', 'C6']",0,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ground Truth,Definition B,label_vector,"[0, 1, 1, 1, 1, 1]","[0, 1, 1, 1, 1, 1]",0,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Traditional (MIL-PRF-62F 20%),true_positives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Traditional (MIL-PRF-62F 20%),false_positives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Traditional (MIL-PRF-62F 20%),false_negatives,5.0000,5.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Traditional (MIL-PRF-62F 20%),true_negatives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Traditional (MIL-PRF-62F 20%),recall,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Traditional (MIL-PRF-62F 20%),false_negative_rate,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Traditional (MIL-PRF-62F 20%),precision,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Traditional (MIL-PRF-62F 20%),f1_score,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Traditional (MIL-PRF-62F 20%),false_positive_rate,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Traditional (MIL-PRF-62F 20%),pr_auc,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Traditional (MIL-PRF-62F 20%),roc_auc,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Traditional (MIL-PRF-62F 20%),mean_lead_time_hours,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Rounded to 2 decimal places in report
+Lead Time,Traditional (MIL-PRF-62F 20%),min_lead_time_hours,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Traditional (MIL-PRF-62F 20%),max_lead_time_hours,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Dynamic Statistical (MAD/Maha),true_positives,3.0000,3.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Dynamic Statistical (MAD/Maha),false_positives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Dynamic Statistical (MAD/Maha),false_negatives,2.0000,2.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Dynamic Statistical (MAD/Maha),true_negatives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Dynamic Statistical (MAD/Maha),recall,0.6000,0.6000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Dynamic Statistical (MAD/Maha),false_negative_rate,0.4000,0.4000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Dynamic Statistical (MAD/Maha),precision,0.7500,0.7500,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Dynamic Statistical (MAD/Maha),f1_score,0.6667,0.6667,3.3333e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Dynamic Statistical (MAD/Maha),false_positive_rate,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Dynamic Statistical (MAD/Maha),pr_auc,0.8100,0.8100,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Dynamic Statistical (MAD/Maha),roc_auc,0.2000,0.2000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Dynamic Statistical (MAD/Maha),mean_lead_time_hours,139.3300,139.3300,0.0000e+00,VERIFIED_EXACT_MATCH,Rounded to 2 decimal places in report
+Lead Time,Dynamic Statistical (MAD/Maha),min_lead_time_hours,124.0000,124.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Dynamic Statistical (MAD/Maha),max_lead_time_hours,147.0000,147.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (Isolation Forest),true_positives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (Isolation Forest),false_positives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (Isolation Forest),false_negatives,5.0000,5.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (Isolation Forest),true_negatives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (Isolation Forest),recall,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (Isolation Forest),false_negative_rate,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (Isolation Forest),precision,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (Isolation Forest),f1_score,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (Isolation Forest),false_positive_rate,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,AI/ML Anomaly (Isolation Forest),pr_auc,0.8767,0.8767,3.3333e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,AI/ML Anomaly (Isolation Forest),roc_auc,0.4000,0.4000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,AI/ML Anomaly (Isolation Forest),mean_lead_time_hours,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Rounded to 2 decimal places in report
+Lead Time,AI/ML Anomaly (Isolation Forest),min_lead_time_hours,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,AI/ML Anomaly (Isolation Forest),max_lead_time_hours,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (One-Class SVM),true_positives,4.0000,4.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (One-Class SVM),false_positives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (One-Class SVM),false_negatives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,AI/ML Anomaly (One-Class SVM),true_negatives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (One-Class SVM),recall,0.8000,0.8000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (One-Class SVM),false_negative_rate,0.2000,0.2000,5.5511e-17,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (One-Class SVM),precision,0.8000,0.8000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (One-Class SVM),f1_score,0.8000,0.8000,1.1102e-16,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,AI/ML Anomaly (One-Class SVM),false_positive_rate,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,AI/ML Anomaly (One-Class SVM),pr_auc,0.8100,0.8100,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,AI/ML Anomaly (One-Class SVM),roc_auc,0.2000,0.2000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,AI/ML Anomaly (One-Class SVM),mean_lead_time_hours,141.2500,141.2500,0.0000e+00,VERIFIED_EXACT_MATCH,Rounded to 2 decimal places in report
+Lead Time,AI/ML Anomaly (One-Class SVM),min_lead_time_hours,124.0000,124.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,AI/ML Anomaly (One-Class SVM),max_lead_time_hours,147.0000,147.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Early Drift Forecast (194h),true_positives,5.0000,5.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Early Drift Forecast (194h),false_positives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Early Drift Forecast (194h),false_negatives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Early Drift Forecast (194h),true_negatives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Early Drift Forecast (194h),recall,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Early Drift Forecast (194h),false_negative_rate,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Early Drift Forecast (194h),precision,0.8333,0.8333,3.3333e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Early Drift Forecast (194h),f1_score,0.9091,0.9091,9.0909e-06,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Early Drift Forecast (194h),false_positive_rate,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Early Drift Forecast (194h),pr_auc,0.7100,0.7100,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Early Drift Forecast (194h),roc_auc,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Early Drift Forecast (194h),mean_lead_time_hours,142.4000,142.4000,0.0000e+00,VERIFIED_EXACT_MATCH,Rounded to 2 decimal places in report
+Lead Time,Early Drift Forecast (194h),min_lead_time_hours,124.0000,124.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Early Drift Forecast (194h),max_lead_time_hours,147.0000,147.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Risk Fusion Engine (Multi-Tier),true_positives,3.0000,3.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Risk Fusion Engine (Multi-Tier),false_positives,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Risk Fusion Engine (Multi-Tier),false_negatives,2.0000,2.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Confusion Matrix,Risk Fusion Engine (Multi-Tier),true_negatives,0.0000,0.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Risk Fusion Engine (Multi-Tier),recall,0.6000,0.6000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Risk Fusion Engine (Multi-Tier),false_negative_rate,0.4000,0.4000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Risk Fusion Engine (Multi-Tier),precision,0.7500,0.7500,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Risk Fusion Engine (Multi-Tier),f1_score,0.6667,0.6667,3.3333e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Performance Metric,Risk Fusion Engine (Multi-Tier),false_positive_rate,1.0000,1.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Risk Fusion Engine (Multi-Tier),pr_auc,0.7833,0.7833,3.3333e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Ranking Metric,Risk Fusion Engine (Multi-Tier),roc_auc,0.3000,0.3000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Risk Fusion Engine (Multi-Tier),mean_lead_time_hours,139.3300,139.3300,0.0000e+00,VERIFIED_EXACT_MATCH,Rounded to 2 decimal places in report
+Lead Time,Risk Fusion Engine (Multi-Tier),min_lead_time_hours,124.0000,124.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Lead Time,Risk Fusion Engine (Multi-Tier),max_lead_time_hours,147.0000,147.0000,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Regression Error,Drift Forecast,mae_pct,1.3337,1.3337,3.3333e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Regression Error,Drift Forecast,rmse_pct,1.9110,1.9110,3.4643e-05,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Hypothesis Test,mcnemar_trad_vs_one_class_svm,exact_p_value,0.3750,0.3750,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Hypothesis Test,mcnemar_trad_vs_drift_forecast,exact_p_value,0.2188,0.2188,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed
+Hypothesis Test,mcnemar_trad_vs_dynamic_statistical,exact_p_value,0.6250,0.6250,0.0000e+00,VERIFIED_EXACT_MATCH,Exact numerical match confirmed

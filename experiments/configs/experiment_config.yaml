@@ -1,0 +1,105 @@
+# Predictive AI-Based Environmental Stress Screening Experiment Configuration
+# Experiment: Comparative Evaluation of Traditional vs Dynamic Statistical vs AI/ML Screening
+
+experiment:
+  name: "predictive_ess_comparative_screening"
+  dataset: "NASA Capacitor Electrical Stress Degradation Dataset"
+  version: "1.0"
+  random_seed: 42
+
+screening:
+  unit_of_analysis: "component"
+  component_id_column: "component_id"
+  lot_id_column: "lot_id"
+  early_window_hours: 47.0
+  alternative_windows_hours:
+    - 24.0
+    - 71.0
+  total_test_duration_hours: 194.0
+  spec_limits:
+    mil_prf_62f_delta_c_pct: 20.0
+    mil_prf_62f_delta_esr_pct: 100.0
+    tightened_delta_c_pct: 5.0
+    tightened_delta_esr_pct: 30.0
+
+ground_truth:
+  definition: "future_threshold_violation_eol"
+  description: "Component passes static limits at t_screen but violates 20% spec at t > t_screen"
+  positive_label_name: "latent_defect_future_failure"
+  negative_label_name: "safe_survivor"
+
+traditional:
+  enabled: true
+  threshold_method: "static_datasheet_union"
+  primary_threshold_c_pct: 20.0
+  primary_threshold_esr_pct: 100.0
+  tightened_threshold_c_pct: 5.0
+
+dynamic_statistical:
+  enabled: true
+  methods:
+    - name: "robust_zscore_mad"
+      threshold: 2.5
+      features:
+        - "delta_capacitance_pct"
+        - "drift_velocity_c"
+    - name: "mahalanobis_distance"
+      covariance_estimator: "ledoit_wolf_shrinkage"
+      alpha_significance: 0.05
+      features:
+        - "delta_capacitance_pct"
+        - "delta_esr_pct"
+        - "drift_velocity_c"
+
+ml:
+  enabled: true
+  primary_model: "isolation_forest"
+  secondary_model: "one_class_svm"
+  models:
+    isolation_forest:
+      n_estimators: 100
+      contamination: 0.1667  # 1/6 baseline prior
+      random_state: 42
+      features:
+        - "delta_capacitance_pct"
+        - "delta_esr_pct"
+        - "drift_velocity_c"
+        - "drift_velocity_esr"
+        - "c_to_esr_ratio"
+    one_class_svm:
+      kernel: "rbf"
+      gamma: "scale"
+      nu: 0.20
+
+split:
+  strategy: "leave_one_component_out"
+  group_column: "component_id"
+  n_splits: 6
+  lot_grouping: "LOT_10V_EOS"
+  anti_leakage_checks: true
+
+evaluation:
+  primary_metric: "recall"
+  critical_risk_metric: "false_negative_rate"
+  secondary_metrics:
+    - "precision"
+    - "f1_score"
+    - "false_positive_rate"
+    - "unnecessary_rejection_rate"
+    - "pr_auc"
+    - "roc_auc"
+    - "early_detection_lead_time_h"
+
+statistical_testing:
+  paired_test: "mcnemar_exact"
+  bootstrap_iterations: 2000
+  confidence_level: 0.95
+  permutation_test_iterations: 10000
+
+reproducibility:
+  seed: 42
+  software_stack:
+    python: ">=3.10"
+    scikit_learn: ">=1.0"
+    pandas: ">=2.0"
+    numpy: ">=1.20"

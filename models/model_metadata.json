@@ -1,0 +1,22 @@
+{
+  "training_timestamp": "2026-09-10T16:20:48Z",
+  "dataset": "burnin_semiconductor_screening.csv",
+  "n_components": 90,
+  "n_reference_healthy": 69,
+  "target_parameter": "leakage_current_ua",
+  "datasheet_spec_limit": 50.0,
+  "prototype_safety_threshold": 16.563,
+  "early_slope_max": 0.04126,
+  "drift_model_mae": 0.7191,
+  "drift_model_rmse": 1.0575,
+  "model_version": "1.0.0",
+  "architecture": "AI-ESS GUARDIAN Dual-Module Screening Engine",
+  "module_a": "Dynamic Outlier Detector (Isolation Forest + LOF + MAD)",
+  "module_b": "Time-Series Drift Predictor (XGBoost / HistGB + Quantile Intervals)",
+  "safety_envelope": "Dynamic Safety Slope (early_slope + predicted_slope)",
+  "files": {
+    "module_a": "module_a_detector.joblib",
+    "module_b": "module_b_predictor.joblib",
+    "safety_envelope": "safety_envelope.json"
+  }
+}

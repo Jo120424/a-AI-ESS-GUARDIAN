@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictive AI-Based ESS Research Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="logo-badge">Research Project</span>
+        <h2 class="sidebar-title">Predictive AI ESS</h2>
+        <p class="sidebar-subtitle">Latent Defect Detection in Electronics</p>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-dashboard" data-title="System Overview" data-desc="Comparative Screening Framework Status">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/></svg>
+            Dashboard
+            <span class="status-tag">Step 2</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" data-page="page-dataset" data-title="Dataset Explorer & Quality Inspection" data-desc="Empirical Ingestion, Profiling & Preprocessing Pipeline">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+            Dataset Explorer
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Profiled</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-components" data-title="Component Health Explorer" data-desc="Discrete Unit Telemetry & Trajectory Degradation Curves">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
+            Component Explorer
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Active</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-experiment" data-title="Experiment Protocol" data-desc="Screening Cutoff Horizon t_screen & LOCO Partitioning">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3zm-3 1.5v.5h3v-.5h-3zm-2.99 4.757a.5.5 0 0 1 .804-.404L7 7.76V13.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V7.76l2.686-1.907a.5.5 0 0 1 .324-.096z"/></svg>
+            Experiment Setup
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Locked</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-screening" data-title="Screening Engine Execution" data-desc="Level 1 vs Level 2 vs Level 3 Comparative Engine">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+            Screening Engine
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Evaluated</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-analytics" data-title="Comparative Analytics" data-desc="Recall, FNR, Unnecessary Rejection & PR-AUC">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.707l-4.146 4.147a.5.5 0 0 1-.708 0L7 6.707l-4.146 4.147a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0L9.5 7.793 13.293 4H10.5a.5.5 0 0 1-.5-.5z"/></svg>
+            Analytics
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Evaluated</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-explainability" data-title="Model Explainability" data-desc="Feature Attributions & Physical Precursor Diagnostics">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+            Explainability
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Evaluated</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-comparison" data-title="Model Comparison Matrix" data-desc="Identical Test Set Performance Benchmark">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+            Model Comparison
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Evaluated</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-page="page-report" data-title="Research Validation & Scientific Report" data-desc="Independent Audit, Forensic Error Analysis, Ablation & Cost Economics">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/><path d="M4.5 12.5A.5.5 0 0 1 5 12h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 10h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/></svg>
+            Validation & Report
+            <span class="status-tag" style="background-color: #065f46; color: #a7f3d0;">Step 5 Done</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="step-indicator">
+          <span class="step-dot" style="background-color: #34d399;"></span>
+          <span>Step 5 Complete (100/100)</span>
+        </div>
+        <p>Validation & Intelligence Layer Verified</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <header class="top-bar">
+        <div class="page-header">
+          <h1 id="currentPageTitle">Predictive AI-Based ESS Research Platform</h1>
+          <p id="currentPageDesc">Comparative Study: Traditional vs Dynamic Statistical vs AI/ML Screening</p>
+        </div>
+        <div class="top-bar-badges">
+          <span class="badge badge-success">Step 5 Validated (100/100)</span>
+          <span class="badge badge-info">37+ Tests Passing</span>
+          <span class="badge badge-success">101/101 Metrics Audited</span>
+        </div>
+      </header>
+
+      <div class="page-container">
+
+        <!-- Prominent Pipeline Status Panel -->
+        <div class="status-panel">
+          <div class="status-step-box">
+            <span class="status-step-label">Step 1: Dataset</span>
+            <span class="status-step-val" style="color: #34d399;">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+              NASA EOS Verified
+            </span>
+          </div>
+          <div class="status-step-box">
+            <span class="status-step-label">Step 2: Preprocessing</span>
+            <span class="status-step-val" style="color: #34d399;">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+              Tidy Panel (66 Obs)
+            </span>
+          </div>
+          <div class="status-step-box">
+            <span class="status-step-label">Step 3: Protocol</span>
+            <span class="status-step-val" style="color: #34d399;">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+              LOCO Protocol Locked
+            </span>
+          </div>
+          <div class="status-step-box">
+            <span class="status-step-label">Step 4: Models</span>
+            <span class="status-step-val" style="color: #34d399;">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+              All 5 Levels Evaluated
+            </span>
+          </div>
+          <div class="status-step-box">
+            <span class="status-step-label">Experiment Readiness</span>
+            <span class="status-step-val" style="color: #38bdf8;">
+              100/100 (Step 4 Done)
+            </span>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW: DATASET EXPLORER ==================== -->
+        <section id="page-dataset" class="page-view active">
+          
+          <!-- Research Boundary Banner -->
+          <div class="research-alert">
+            <h3>
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/><path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/></svg>
+              Step 2 Verification Complete: Zero Missing Data & Non-Leakage Verified
+            </h3>
+            <p>
+              Dataset <code>EOS_DataSet.mat</code> successfully ingested and profiled. The cohort exhibits 0 missing values, 0 duplicate records, and strict monotonic forward temporal ordering. Early screening horizon ($t_{\text{screen}} = 47\text{h}$) preserves traditional Level 1 PASS for all units, while downstream degradation validates premature failure for units C2, C3, C4, C5, and C6.
+            </p>
+          </div>
+
+          <!-- Dataset Explorer Subtabs -->
+          <div class="subtabs">
+            <button class="subtab-btn active" data-subtab="subtab-overview">Dataset Overview</button>
+            <button class="subtab-btn" data-subtab="subtab-features">Feature Explorer</button>
+            <button class="subtab-btn" data-subtab="subtab-components-tab">Component Health</button>
+            <button class="subtab-btn" data-subtab="subtab-quality">Quality & Outlier Analysis</button>
+            <button class="subtab-btn" data-subtab="subtab-traceability">Source Provenance</button>
+          </div>
+
+          <!-- Subtab 1: Dataset Overview -->
+          <div id="subtab-overview" class="subtab-content active">
+            <div class="card-grid">
+              <div class="card">
+                <span class="card-tag card-tag-primary">OBSERVATIONS & VOLUME</span>
+                <h3 style="margin-top: 8px; font-size: 16px;">Dataset Dimensions</h3>
+                <ul class="card-meta-list">
+                  <li class="card-meta-item"><span>Total Rows:</span><span id="ov_rows">66 records</span></li>
+                  <li class="card-meta-item"><span>Total Features:</span><span id="ov_cols">14 columns</span></li>
+                  <li class="card-meta-item"><span>Physical Units:</span><span id="ov_comps">6 discrete capacitors</span></li>
+                  <li class="card-meta-item"><span>Stress Cohorts:</span><span id="ov_lots">1 lot (LOT_10V_EOS)</span></li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-tag card-tag-backup">TEMPORAL PANEL</span>
+                <h3 style="margin-top: 8px; font-size: 16px;">Test Time Horizon</h3>
+                <ul class="card-meta-list">
+                  <li class="card-meta-item"><span>Time Range:</span><span id="ov_time_range">0h – 194h (11 steps)</span></li>
+                  <li class="card-meta-item"><span>Panel Balance:</span><span>100% (11 obs / unit)</span></li>
+                  <li class="card-meta-item"><span>Missing Data %:</span><span id="ov_missing" style="color: #34d399;">0.00% (0 nulls)</span></li>
+                  <li class="card-meta-item"><span>Duplicate Records:</span><span id="ov_duplicates" style="color: #34d399;">0 duplicates</span></li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-tag card-tag-evaluated">DOWNSTREAM TARGET</span>
+                <h3 style="margin-top: 8px; font-size: 16px;">Failure & Class Balance</h3>
+                <ul class="card-meta-list">
+                  <li class="card-meta-item"><span>Normal Obs (ΔC &lt; 20%):</span><span id="ov_normal">60 records</span></li>
+                  <li class="card-meta-item"><span>Fail Obs (ΔC ≥ 20%):</span><span id="ov_fail" style="color: #f87171;">6 records</span></li>
+                  <li class="card-meta-item"><span>Units Violating Spec:</span><span>5 units (C2, C3, C4, C5, C6)</span></li>
+                  <li class="card-meta-item"><span>Survivor Units:</span><span style="color: #34d399;">1 unit (C1)</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Capabilities Verification -->
+            <div class="capabilities-container">
+              <div class="section-heading">
+                <span>Verified Dataset Capabilities</span>
+                <span style="font-size: 12px; color: var(--text-muted);">Empirically verified from EOS_DataSet.mat</span>
+              </div>
+              <div class="capabilities-grid">
+                <div class="capability-card"><div class="capability-label">Time-Series</div><span class="cap-badge cap-yes">YES (11 STEPS)</span></div>
+                <div class="capability-card"><div class="capability-label">Component IDs</div><span class="cap-badge cap-yes">YES (C1–C6)</span></div>
+                <div class="capability-card"><div class="capability-label">Lot IDs</div><span class="cap-badge cap-yes">YES (10V COHORT)</span></div>
+                <div class="capability-card"><div class="capability-label">Failure Labels</div><span class="cap-badge cap-yes">YES (MIL-PRF-62F)</span></div>
+                <div class="capability-card"><div class="capability-label">Degradation</div><span class="cap-badge cap-yes">YES (ΔC & ΔESR)</span></div>
+                <div class="capability-card"><div class="capability-label">Environment</div><span class="cap-badge cap-yes">YES (10V STRESS)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 2: Feature Explorer (Section 18) -->
+          <div id="subtab-features" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                <div>
+                  <h3 style="font-size: 16px;">Interactive Feature Explorer</h3>
+                  <p style="font-size: 12.5px; color: var(--text-secondary);">Inspect distribution, statistical moments, missingness, and engineering units.</p>
+                </div>
+                <div>
+                  <label for="featureSelect" style="font-size: 12px; color: var(--text-muted); margin-right: 8px;">Select Feature:</label>
+                  <select id="featureSelect" class="select-control"></select>
+                </div>
+              </div>
+
+              <div class="card-grid" style="margin-bottom: 0;">
+                <div class="card" style="background-color: var(--bg-surface);">
+                  <span class="card-tag card-tag-primary" id="feat_type">NUMERIC</span>
+                  <h4 id="feat_name" style="margin-top: 8px; font-size: 15px; color: #fff;">delta_capacitance_pct</h4>
+                  <ul class="card-meta-list">
+                    <li class="card-meta-item"><span>Count:</span><span id="feat_count">66</span></li>
+                    <li class="card-meta-item"><span>Missing %:</span><span id="feat_missing">0.00%</span></li>
+                    <li class="card-meta-item"><span>Mean:</span><span id="feat_mean">—</span></li>
+                    <li class="card-meta-item"><span>Median:</span><span id="feat_median">—</span></li>
+                  </ul>
+                </div>
+                <div class="card" style="background-color: var(--bg-surface);">
+                  <span class="card-tag card-tag-backup">DISPERSION & SKEW</span>
+                  <h4 style="margin-top: 8px; font-size: 15px; color: #fff;">Distribution Shape</h4>
+                  <ul class="card-meta-list">
+                    <li class="card-meta-item"><span>Std Deviation:</span><span id="feat_std">—</span></li>
+                    <li class="card-meta-item"><span>Min / Max:</span><span><span id="feat_min">—</span> / <span id="feat_max">—</span></span></li>
+                    <li class="card-meta-item"><span>Interquartile Range (IQR):</span><span id="feat_iqr">—</span></li>
+                    <li class="card-meta-item"><span>Skewness:</span><span id="feat_skew">—</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 3: Component Health Explorer (Section 18) -->
+          <div id="subtab-components-tab" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                <div>
+                  <h3 id="comp_id_title" style="font-size: 16px;">Component C1</h3>
+                  <p style="font-size: 12.5px; color: var(--text-secondary);">Longitudinal degradation telemetry under continuous 10V electrical overstress.</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span id="comp_spec_badge" class="badge badge-success">Passed Spec Throughout</span>
+                  <select id="compSelect" class="select-control"></select>
+                </div>
+              </div>
+
+              <div class="table-wrapper">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Test Step</th>
+                      <th>Aging Time</th>
+                      <th>ΔC (%)</th>
+                      <th>ΔESR (%)</th>
+                      <th>Physical C</th>
+                      <th>Physical ESR</th>
+                      <th>Drift Velocity (dC/dt)</th>
+                      <th>Static Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="compTrajectoryBody">
+                    <!-- Populated by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 4: Quality & Outlier Analysis -->
+          <div id="subtab-quality" class="subtab-content">
+            <div class="card-grid">
+              <div class="card">
+                <h4 style="font-size: 14px; margin-bottom: 8px;">Missing Values & Completeness</h4>
+                <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;">
+                  Across all 66 component-time observations and 14 feature columns, there are <strong>0 missing values, 0 NaNs, and 0 placeholder codes</strong>. The dataset constitutes a complete, un-imputed balanced longitudinal panel.
+                </p>
+              </div>
+              <div class="card">
+                <h4 style="font-size: 14px; margin-bottom: 8px;">Duplicates & Temporal Uniqueness</h4>
+                <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;">
+                  Exact duplicate check on <code>[component_id, aging_time_hours]</code> confirms <strong>zero duplicate timestamps</strong>. Temporal ordering is strictly monotonic forward in time.
+                </p>
+              </div>
+              <div class="card">
+                <h4 style="font-size: 14px; margin-bottom: 8px;">Outlier & Anomaly Policy</h4>
+                <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;">
+                  No statistical outliers were deleted. Unit C4 exhibits accelerated drift velocity starting at 94h; this represents a <strong>physical failure precursor</strong> (the exact target of ESS screening) rather than a measurement flaw.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 5: Source Provenance -->
+          <div id="subtab-traceability" class="subtab-content">
+            <div class="traceability-box">
+              <h4 class="trace-title">NASA Ames Research Center — Prognostics Center of Excellence</h4>
+              <div class="trace-citation">
+                Celaya, J. R., Kulkarni, C., Biswas, G., & Goebel, K. (2012). "Towards A Model-based Prognostics Methodology for Electrolytic Capacitors: A Case Study Based on Electrical Overstress Accelerated Aging." Annual Conference of the PHM Society 2012.
+              </div>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px;">
+                <strong>Official Portal:</strong> <a class="trace-link" href="https://data.nasa.gov/dataset/capacitor-electrical-stress-2" target="_blank">https://data.nasa.gov/dataset/capacitor-electrical-stress-2</a><br>
+                <strong>Raw File:</strong> <code>EOS_DataSet.zip</code> (SHA-256: <code>944cd2284cd0...</code>)<br>
+                <strong>License:</strong> NASA Open Data Policy (Public Domain).
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== VIEW: COMPONENT EXPLORER (PAGE VIEW) ==================== -->
+        <section id="page-components" class="page-view">
+          <div class="card" style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <div>
+                <h3 style="font-size: 16px;">Component Health & Degradation Telemetry</h3>
+                <p style="font-size: 12.5px; color: var(--text-secondary);">Inspect individual capacitor drift trajectories under continuous 10V electrical overstress.</p>
+              </div>
+              <div>
+                <select id="compSelectPage" class="select-control"></select>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Test Step</th>
+                    <th>Aging Time</th>
+                    <th>ΔC (%)</th>
+                    <th>ΔESR (%)</th>
+                    <th>Physical C</th>
+                    <th>Physical ESR</th>
+                    <th>Drift Velocity (dC/dt)</th>
+                    <th>Static Status</th>
+                  </tr>
+                </thead>
+                <tbody id="compTrajectoryBodyPage">
+                  <!-- Populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW: DASHBOARD ==================== -->
+        <section id="page-dashboard" class="page-view">
+          <div class="card" style="margin-bottom: 24px;">
+            <h2 style="font-size: 18px; margin-bottom: 8px;">Predictive AI-Based ESS Research Platform — Step 5 Complete</h2>
+            <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+              All 5 research steps are complete. The pipeline spans NASA dataset acquisition (Step 1-2), experimental protocol design (Step 3), comparative model execution (Step 4), and independent research validation &amp; scientific results intelligence (Step 5). All 101 Step 4 metrics have been independently verified with zero discrepancies.
+            </p>
+          </div>
+
+          <!-- RESULTS AUDIT -->
+          <div class="section-heading" style="margin-bottom: 12px;">
+            <span>Results Audit</span>
+            <span style="font-size: 12px; color: #34d399; font-weight: 600;">101/101 Verified (0 Discrepancies)</span>
+          </div>
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-tag card-tag-primary">REPRODUCIBILITY</span>
+              <h4 style="margin-top: 8px; font-size: 14px;">Verified Metrics</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Audit Checks:</span><span style="color: #34d399;">101 / 101 Exact Match</span></li>
+                <li class="card-meta-item"><span>Confusion Matrices:</span><span style="color: #34d399;">All 7 methods verified</span></li>
+                <li class="card-meta-item"><span>Lead Times:</span><span style="color: #34d399;">Reproduced exactly</span></li>
+                <li class="card-meta-item"><span>McNemar p-values:</span><span style="color: #34d399;">Byte-for-byte match</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <span class="card-tag card-tag-backup">DATASET INTEGRITY</span>
+              <h4 style="margin-top: 8px; font-size: 14px;">Dataset Hash</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>SHA-256:</span><span style="font-size: 11px;">4b1bf4...bdf5e</span></li>
+                <li class="card-meta-item"><span>Components:</span><span>6 (C1-C6)</span></li>
+                <li class="card-meta-item"><span>Observations:</span><span>66 records</span></li>
+                <li class="card-meta-item"><span>Ground Truth:</span><span>[0, 1, 1, 1, 1, 1]</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <span class="card-tag card-tag-evaluated">REPRODUCIBILITY</span>
+              <h4 style="margin-top: 8px; font-size: 14px;">Pipeline Status</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Random Seed:</span><span>42 (deterministic)</span></li>
+                <li class="card-meta-item"><span>Validation Time:</span><span>~2.5 seconds</span></li>
+                <li class="card-meta-item"><span>Test Suite:</span><span style="color: #34d399;">37+ tests passing</span></li>
+                <li class="card-meta-item"><span>Discrepancies:</span><span style="color: #34d399;">0</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MODEL COMPARISON -->
+          <div class="section-heading" style="margin-top: 24px; margin-bottom: 12px;">
+            <span>Model Comparison</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Traditional vs Statistical vs AI/ML</span>
+          </div>
+          <div class="card-grid">
+            <div class="card" style="border-left: 3px solid #fbbf24;">
+              <h4 style="font-size: 14px; color: #fbbf24;">Traditional Static (MIL-PRF-62F)</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Recall:</span><span style="color: #f87171; font-weight: 700;">0.0%</span></li>
+                <li class="card-meta-item"><span>FNR:</span><span style="color: #f87171;">100.0%</span></li>
+                <li class="card-meta-item"><span>FPR:</span><span style="color: #34d399;">0.0%</span></li>
+                <li class="card-meta-item"><span>Lead Time:</span><span>0.0 h</span></li>
+              </ul>
+            </div>
+            <div class="card" style="border-left: 3px solid #38bdf8;">
+              <h4 style="font-size: 14px; color: #38bdf8;">Dynamic Statistical (MAD/Maha)</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Recall:</span><span style="color: #fbbf24;">60.0%</span></li>
+                <li class="card-meta-item"><span>F1-Score:</span><span>0.6667</span></li>
+                <li class="card-meta-item"><span>FPR:</span><span style="color: #f87171;">100.0%</span></li>
+                <li class="card-meta-item"><span>Lead Time:</span><span>139.33 h</span></li>
+              </ul>
+            </div>
+            <div class="card" style="border-left: 3px solid #c084fc;">
+              <h4 style="font-size: 14px; color: #c084fc;">AI/ML Anomaly (One-Class SVM)</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Recall:</span><span style="color: #38bdf8;">80.0%</span></li>
+                <li class="card-meta-item"><span>F1-Score:</span><span>0.8000</span></li>
+                <li class="card-meta-item"><span>FPR:</span><span style="color: #f87171;">100.0%</span></li>
+                <li class="card-meta-item"><span>Lead Time:</span><span>141.25 h</span></li>
+              </ul>
+            </div>
+            <div class="card" style="border-left: 3px solid #34d399;">
+              <h4 style="font-size: 14px; color: #34d399;">Early Drift Forecast (194h)</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Recall:</span><span style="color: #34d399; font-weight: 700;">100.0%</span></li>
+                <li class="card-meta-item"><span>F1-Score:</span><span style="font-weight: 700;">0.9091</span></li>
+                <li class="card-meta-item"><span>FPR:</span><span style="color: #f87171;">100.0%</span></li>
+                <li class="card-meta-item"><span>Lead Time:</span><span style="font-weight: 700;">142.40 h</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ERROR ANALYSIS -->
+          <div class="section-heading" style="margin-top: 24px; margin-bottom: 12px;">
+            <span>Error Analysis</span>
+            <span style="font-size: 12px; color: var(--text-muted);">False Negatives &amp; False Positives</span>
+          </div>
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-tag card-tag-danger">FALSE NEGATIVES (SAFETY CRITICAL)</span>
+              <ul class="card-meta-list" style="margin-top: 10px;">
+                <li class="card-meta-item"><span>Traditional:</span><span style="color: #f87171;">5/5 escaped (100%)</span></li>
+                <li class="card-meta-item"><span>Statistical:</span><span style="color: #fbbf24;">2/5 escaped (C3, C5)</span></li>
+                <li class="card-meta-item"><span>OC-SVM:</span><span style="color: #fbbf24;">1/5 escaped (C5)</span></li>
+                <li class="card-meta-item"><span>Drift Forecast:</span><span style="color: #34d399; font-weight: 700;">0/5 escaped (0%)</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <span class="card-tag card-tag-warning">FALSE POSITIVES (YIELD LOSS)</span>
+              <ul class="card-meta-list" style="margin-top: 10px;">
+                <li class="card-meta-item"><span>Component:</span><span>C1 (only healthy survivor)</span></li>
+                <li class="card-meta-item"><span>Root Cause:</span><span>Symmetric distance bias</span></li>
+                <li class="card-meta-item"><span>Z_MAD:</span><span>-6.76 (penalized for health)</span></li>
+                <li class="card-meta-item"><span>Remedy:</span><span style="color: #38bdf8;">Directional screening → FPR = 0%</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ABLATION -->
+          <div class="section-heading" style="margin-top: 24px; margin-bottom: 12px;">
+            <span>Ablation Summary</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Individual vs Combined Module Value</span>
+          </div>
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Paradigm</th><th>Recall</th><th>F1</th><th>Lead Time</th><th>Δ vs Trad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>A: Traditional Only</td><td style="color:#f87171;">0.0%</td><td>0.0000</td><td>0.0 h</td><td>Baseline</td></tr>
+                  <tr><td>B: Statistical Only</td><td>60.0%</td><td>0.6667</td><td>139.3 h</td><td style="color:#34d399;">+60.0%</td></tr>
+                  <tr><td>C: OC-SVM Only</td><td>80.0%</td><td>0.8000</td><td>141.2 h</td><td style="color:#34d399;">+80.0%</td></tr>
+                  <tr style="background-color: rgba(52,211,153,0.08);"><td><strong>D: Drift Forecast Only</strong></td><td style="color:#34d399; font-weight:700;">100.0%</td><td style="font-weight:700;">0.9091</td><td style="font-weight:700;">142.4 h</td><td style="color:#34d399; font-weight:700;">+100.0%</td></tr>
+                  <tr><td>E: Anomaly + Drift (OR)</td><td style="color:#34d399;">100.0%</td><td>0.9091</td><td>142.4 h</td><td style="color:#34d399;">+100.0%</td></tr>
+                  <tr><td>F: Full Fusion (Strict)</td><td>60.0%</td><td>0.6667</td><td>139.3 h</td><td style="color:#34d399;">+60.0%</td></tr>
+                  <tr><td>F-Ext: Fusion + Quarantine</td><td style="color:#34d399;">100.0%</td><td>0.9091</td><td>142.4 h</td><td style="color:#34d399;">+100.0%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- EARLY WARNING -->
+          <div class="section-heading" style="margin-top: 24px; margin-bottom: 12px;">
+            <span>Early Warning Timeline</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Predictive Lead Time Before Physical Failure</span>
+          </div>
+          <div class="card-grid">
+            <div class="card">
+              <h4 style="font-size: 14px;">Lead Time Range</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Minimum:</span><span style="font-weight: 700;">124.0 hours (C4)</span></li>
+                <li class="card-meta-item"><span>Maximum:</span><span style="font-weight: 700;">147.0 hours (C2,C3,C5,C6)</span></li>
+                <li class="card-meta-item"><span>Mean (Drift):</span><span style="font-weight: 700;">142.40 hours</span></li>
+                <li class="card-meta-item"><span>Physical Meaning:</span><span>~6 days advance warning</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4 style="font-size: 14px;">Detection Comparison</h4>
+              <ul class="card-meta-list">
+                <li class="card-meta-item"><span>Traditional:</span><span style="color: #f87171;">0.0 h (no detection)</span></li>
+                <li class="card-meta-item"><span>Statistical:</span><span>139.33 h (3/5 detected)</span></li>
+                <li class="card-meta-item"><span>OC-SVM:</span><span>141.25 h (4/5 detected)</span></li>
+                <li class="card-meta-item"><span>Drift Forecast:</span><span style="color: #34d399; font-weight: 700;">142.40 h (5/5 detected)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ENGINEERING TRADE-OFF -->
+          <div class="section-heading" style="margin-top: 24px; margin-bottom: 12px;">
+            <span>Engineering Trade-Off</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Safety vs False Alarms</span>
+          </div>
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Dimension</th><th>Traditional Static</th><th>AI/ML Drift Forecaster</th><th>Dynamic Statistical</th><th>Multi-Tier Fusion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Defect Recall</strong></td><td style="color:#f87171;">POOR (0%)</td><td style="color:#34d399;font-weight:700;">EXCELLENT (100%)</td><td style="color:#fbbf24;">MODERATE (60%)</td><td style="color:#34d399;">EXCELLENT (100% quarantine)</td></tr>
+                  <tr><td><strong>Defect Escape Risk</strong></td><td style="color:#f87171;">CATASTROPHIC (100%)</td><td style="color:#34d399;font-weight:700;">ZERO (0%)</td><td style="color:#fbbf24;">MODERATE (40%)</td><td style="color:#34d399;">ZERO (0% quarantine)</td></tr>
+                  <tr><td><strong>Yield Loss (FPR)</strong></td><td style="color:#34d399;">PERFECT (0%)</td><td style="color:#f87171;">POOR (100%)</td><td style="color:#f87171;">POOR (100%)</td><td>ADAPTABLE (Tiered)</td></tr>
+                  <tr><td><strong>Lead Time</strong></td><td>0.0 h</td><td style="font-weight:700;">142.4 h</td><td>139.3 h</td><td style="font-weight:700;">142.4 h</td></tr>
+                  <tr><td><strong>Explainability</strong></td><td>Simple limit</td><td>Kinetic trajectory</td><td>Robust Z-scores</td><td>Multi-factor audit</td></tr>
+                  <tr><td><strong>Compute Overhead</strong></td><td>&lt; 1 ms</td><td>~ 15 ms</td><td>&lt; 5 ms</td><td>~ 20 ms</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- RESEARCH CONCLUSION -->
+          <div class="section-heading" style="margin-top: 24px; margin-bottom: 12px;">
+            <span>Research Conclusion</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Evidence-Based Scientific Finding</span>
+          </div>
+          <div class="card" style="margin-bottom: 24px;">
+            <blockquote style="font-size: 14px; font-style: italic; color: #34d399; background: rgba(52, 211, 153, 0.08); padding: 14px 18px; border-left: 4px solid #34d399; margin: 0 0 16px 0; border-radius: 4px;">
+              "On this dataset, the predictive AI/ML approach achieved higher defect recall than conventional static screening (60%-100% vs 0%), while producing more false alarms. The Early Drift Forecaster intercepted all 5 latent defects with 124-147 hours of advance warning, but flagged the single healthy survivor — a trade-off inherent to symmetric unsupervised screening on a cohort with N=6 and only 1 survivor."
+            </blockquote>
+            <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;">
+              <strong>Important Limitation:</strong> With only 6 physical components and 1 healthy survivor, a single false positive mathematically yields FPR=100%. McNemar exact tests cannot reach p&lt;0.05 at this sample size. Results should be interpreted as a proof-of-concept demonstrating the predictive screening paradigm, not as a statistically powered clinical trial. Directional (one-sided) screening is recommended for future production deployment to eliminate the symmetric distance artifact.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW: EXPERIMENT (STEP 3) ==================== -->
+        <section id="page-experiment" class="page-view">
+          
+          <!-- Protocol Locked Banner -->
+          <div class="research-alert" style="border-left-color: #38bdf8; background-color: rgba(56, 189, 248, 0.08);">
+            <h3 style="color: #38bdf8;">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/></svg>
+              Step 3 Protocol Locked: Mathematical Formulation & Anti-Leakage Enforced
+            </h3>
+            <p>
+              Experimental boundaries, ground-truth latent risk labeling (Definition B), and 6-fold Leave-One-Component-Out (LOCO) partitioning are verified and locked. All 3 screening paradigms (Traditional, Dynamic Statistical, AI/ML) are strictly quarantined to pre-screening data ($t \le 47.0\,\text{h}$) and evaluated on identical unseen test components. <strong>Notice:</strong> Final ML model training and comparative performance metrics are strictly deferred to Step 4; zero fabricated outcomes.
+            </p>
+          </div>
+
+          <!-- 11-Point Status Checklist (Section 23) -->
+          <div style="margin-bottom: 20px;">
+            <div class="section-heading" style="margin-bottom: 12px;">
+              <span>Experiment Design & Execution Checklist</span>
+              <span style="font-size: 12px; color: #34d399; font-weight: 600;">11/11 Completed (Step 4 Fully Evaluated)</span>
+            </div>
+            <div class="checklist-grid">
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>1. Research Hypotheses Formulated (H0, H1)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>2. Unit of Analysis Designated (component_id)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>3. Strict Information Boundary Enforced (t ≤ 47h)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>4. Ground Truth Latent Risk Operationalized (Def B)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>5. Screening Cutoff Horizon Calibrated (47h)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>6. Three Screening Paradigms Formalized</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>7. Feature Engineering Pipeline Built (Causal Only)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>8. Leave-One-Component-Out Scheme Configured</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>9. ML Models Trained (Completed Step 4)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>10. Comparative Metrics Evaluated (Completed Step 4)</span>
+              </div>
+              <div class="checklist-item check-done">
+                <span class="check-icon">✓</span>
+                <span>11. Statistical Significance Tested (Completed Step 4)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conceptual Foundation Cards -->
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-tag card-tag-primary">HYPOTHESES</span>
+              <h3 style="margin-top: 8px; font-size: 15px;">Research Hypotheses</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                <strong>Primary:</strong> $H_{0,1}: \text{Recall}_{\text{ML}} = \text{Recall}_{\text{Trad}}$ vs $H_{1,1}: \text{Recall}_{\text{ML}} > \text{Recall}_{\text{Trad}}$ at $t_{\text{screen}} = 47.0\,\text{h}$.<br>
+                <strong>Secondary:</strong> $H_{0,2}: \text{FPR}_{\text{ML}} \le \alpha_{\text{spec}}$ ensuring latent defect detection without catastrophic yield loss.
+              </p>
+            </div>
+            <div class="card">
+              <span class="card-tag card-tag-backup">BOUNDARY</span>
+              <h3 style="margin-top: 8px; font-size: 15px;">Unit of Analysis & Cutoff</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                <strong>Decision Unit:</strong> Discrete physical capacitor (<code>component_id</code>).<br>
+                <strong>Early Cutoff:</strong> $t_{\text{screen}} = 47.0\,\text{h}$ (Cycle 2 of 10).<br>
+                <strong>Temporal Quarantine:</strong> Zero telemetry from $t > 47\,\text{h}$ accessible during screening decision.
+              </p>
+            </div>
+            <div class="card">
+              <span class="card-tag card-tag-evaluated">GROUND TRUTH</span>
+              <h3 style="margin-top: 8px; font-size: 15px;">Latent Risk (Definition B)</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                $y_i = \mathbb{I}\left(\max_{t > 47\text{h}} \Delta C_i(t) \ge 20.0\%\right)$ given $\Delta C_i(47\text{h}) < 20.0\%$.<br>
+                Empirical Labels: <strong>C1 = 0</strong> (Safe Survivor); <strong>C2, C3, C4, C5, C6 = 1</strong> (Latent Defect Risk).
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive Ground Truth Explorer -->
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <h3 style="font-size: 16px;">Empirical Ground Truth Labels Across Screening Cutoff Horizons</h3>
+                <p style="font-size: 12.5px; color: var(--text-secondary);">Select the screening cutoff horizon ($t_{\text{screen}}$) to verify ground-truth labels and early pass rates.</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <label for="expWindowSelect" style="font-size: 12px; color: var(--text-muted); font-weight: 500;">Cutoff Horizon ($t_{\text{screen}}$):</label>
+                <select id="expWindowSelect" class="select-control">
+                  <option value="47.0" selected>Primary Horizon: 47.0 h (Cycle 2)</option>
+                  <option value="24.0">Early Horizon: 24.0 h (Cycle 1)</option>
+                  <option value="71.0">Intermediate Horizon: 71.0 h (Cycle 3)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Component ID</th>
+                    <th>Screening Cutoff ($t_{\text{screen}}$)</th>
+                    <th>Early Max ΔC (%)</th>
+                    <th>Future Max ΔC (%)</th>
+                    <th>Downstream Failure Time</th>
+                    <th>Ground Truth Label ($y_i$)</th>
+                  </tr>
+                </thead>
+                <tbody id="groundTruthTableBody">
+                  <!-- Dynamically populated from /api/experiment/ground_truth -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Three Screening Paradigms Formalization -->
+          <div class="section-heading" style="margin-bottom: 14px;">
+            <span>Three-Level Comparative Screening Paradigms</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Evaluated concurrently on identical unseen test components</span>
+          </div>
+
+          <div class="card-grid">
+            <div class="card method-card method-card-trad">
+              <span class="card-tag card-tag-backup">LEVEL 1: BASELINE</span>
+              <h3 style="margin-top: 8px; font-size: 16px; color: #fbbf24;">Traditional Static Screening</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                Specification-limit thresholding under standard space qualification guidelines (<strong>MIL-PRF-62F</strong>).
+              </p>
+              <ul class="card-meta-list" style="margin-top: 12px;">
+                <li class="card-meta-item"><span>Standard Spec Limit:</span><span>$\Delta C(t_{\text{screen}}) \ge 20.0\%$</span></li>
+                <li class="card-meta-item"><span>Tightened Baseline:</span><span>$\Delta C(t_{\text{screen}}) \ge 5.0\%$</span></li>
+                <li class="card-meta-item"><span>Information Scope:</span><span>Univariate, Single-Point</span></li>
+                <li class="card-meta-item"><span>Population Context:</span><span style="color: #f87171;">None (Zero Lot Awareness)</span></li>
+                <li class="card-meta-item"><span>At $t_{\text{screen}} = 47\text{h}$:</span><span style="color: #f87171; font-weight: 600;">100% Pass (0% Defect Detection)</span></li>
+              </ul>
+            </div>
+
+            <div class="card method-card method-card-stat">
+              <span class="card-tag card-tag-primary">LEVEL 2: BENCHMARK</span>
+              <h3 style="margin-top: 8px; font-size: 16px; color: #38bdf8;">Dynamic Statistical Screening</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                Population-relative outlier detection based on robust dispersion and regularized covariance geometry.
+              </p>
+              <ul class="card-meta-list" style="margin-top: 12px;">
+                <li class="card-meta-item"><span>Univariate Detector:</span><span>Hampel MAD Robust Z-score ($Z_{\text{MAD}} > 3.0$)</span></li>
+                <li class="card-meta-item"><span>Multivariate Detector:</span><span>Ledoit-Wolf Mahalanobis ($D_M > \chi^2_{p, 0.95}$)</span></li>
+                <li class="card-meta-item"><span>Kinetic Signals:</span><span>Drift Rate $\frac{d\,\Delta C}{dt}$, $\frac{d\,\Delta\text{ESR}}{dt}$</span></li>
+                <li class="card-meta-item"><span>Population Context:</span><span style="color: #34d399;">Training Lot Distribution</span></li>
+                <li class="card-meta-item"><span>Parameter Estimation:</span><span>Strictly Out-of-Fold Fitted</span></li>
+              </ul>
+            </div>
+
+            <div class="card method-card method-card-ml">
+              <span class="card-tag card-tag-evaluated">LEVEL 3: PROPOSED</span>
+              <h3 style="margin-top: 8px; font-size: 16px; color: #c084fc;">Predictive AI / ML Screening</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                Non-linear ensemble anomaly isolation capturing subtle multi-feature degradation interactions.
+              </p>
+              <ul class="card-meta-list" style="margin-top: 12px;">
+                <li class="card-meta-item"><span>Primary Model:</span><span>Isolation Forest (Path Length Scoring)</span></li>
+                <li class="card-meta-item"><span>Secondary Benchmark:</span><span>One-Class SVM (RBF Kernel Boundary)</span></li>
+                <li class="card-meta-item"><span>Feature Dimension:</span><span>5 Causal Features ($t \le 47\text{h}$)</span></li>
+                <li class="card-meta-item"><span>Anomaly Threshold $\tau$:</span><span>Calibrated on Training Fold</span></li>
+                <li class="card-meta-item"><span>Interpretability:</span><span>SHAP & Partial Mahalanobis Projections</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Leakage Prevention & Anti-Contamination Protocols -->
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; margin-bottom: 6px;">Six Anti-Leakage Safeguards & Algorithmic Enforcement</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 16px;">
+              Strict statistical and temporal isolation protocols prevent artificial inflation of predictive performance.
+            </p>
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Vulnerability ID</th>
+                    <th>Vulnerability Mode</th>
+                    <th>Programmatic Safeguard</th>
+                    <th>Enforcement Mechanism</th>
+                    <th>Verification Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>LK-01</strong></td>
+                    <td>Temporal Lookahead Leakage</td>
+                    <td>Telemetry at $t > t_{\text{screen}}$ strictly filtered prior to feature engineering.</td>
+                    <td>Filter: <code>df[df['aging_time_hours'] &lt;= t_screen]</code></td>
+                    <td><span class="badge badge-success">Enforced</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>LK-02</strong></td>
+                    <td>Cross-Component Contamination</td>
+                    <td>Leave-One-Component-Out (LOCO) guarantees complete isolation of test component.</td>
+                    <td><code>GroupKFold(groups=component_id)</code></td>
+                    <td><span class="badge badge-success">Enforced</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>LK-03</strong></td>
+                    <td>Statistical Fitting Contamination</td>
+                    <td>Population statistics ($\mu, \sigma, \mathbf{\Sigma}^{-1}$) fitted strictly on training components.</td>
+                    <td><code>scaler.fit(X_train); scaler.transform(X_test)</code></td>
+                    <td><span class="badge badge-success">Enforced</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>LK-04</strong></td>
+                    <td>Lookahead Feature Derivatives</td>
+                    <td>Drift velocities computed strictly via backward causal finite differences.</td>
+                    <td>$\frac{x(t) - x(t-1)}{t - (t-1)}$ (zero forward steps)</td>
+                    <td><span class="badge badge-success">Enforced</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>LK-05</strong></td>
+                    <td>Threshold Optimization Leakage</td>
+                    <td>Decision thresholds ($\tau, Z_{\text{crit}}$) calibrated on training folds only.</td>
+                    <td>Percentile thresholding strictly on $X_{\text{train}}$</td>
+                    <td><span class="badge badge-success">Enforced</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>LK-06</strong></td>
+                    <td>Ground Truth Target Contamination</td>
+                    <td>Ground truth labels never passed to unsupervised screening engines.</td>
+                    <td>Unsupervised modeling; $y$ accessed only during scoring.</td>
+                    <td><span class="badge badge-success">Enforced</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== VIEW: SCREENING (STEP 3 PIPELINE) ==================== -->
+        <section id="page-screening" class="page-view">
+          
+          <div class="research-alert" style="border-left-color: #8b5cf6; background-color: rgba(139, 92, 246, 0.08);">
+            <h3 style="color: #c084fc;">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+              Screening Engine Architecture: Ready for Step 4 Execution
+            </h3>
+            <p>
+              The unified execution pipeline connects Level 1 Static Specification, Level 2 Robust Statistical, and Level 3 AI/ML Anomaly screening on identical 6-fold Leave-One-Component-Out (LOCO) partitions. Model fitting, score generation, and comparative performance analysis will be executed in <strong>Step 4</strong>.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-tag card-tag-primary">STAGE 1–3</span>
+              <h3 style="margin-top: 8px; font-size: 15px;">Input & Causal Feature Extraction</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                Extracts 5 causal features for each component strictly using observations up to $t_{\text{screen}} = 47.0\,\text{h}$:
+              </p>
+              <ul class="card-meta-list" style="margin-top: 10px;">
+                <li class="card-meta-item"><span>1. delta_capacitance_pct</span><span>$\Delta C(47\text{h})$</span></li>
+                <li class="card-meta-item"><span>2. delta_esr_pct</span><span>$\Delta\text{ESR}(47\text{h})$</span></li>
+                <li class="card-meta-item"><span>3. drift_velocity_c</span><span>$\frac{\Delta C(47) - \Delta C(24)}{23\,\text{h}}$</span></li>
+                <li class="card-meta-item"><span>4. drift_velocity_esr</span><span>$\frac{\Delta\text{ESR}(47) - \Delta\text{ESR}(24)}{23\,\text{h}}$</span></li>
+                <li class="card-meta-item"><span>5. drift_ratio</span><span>$\frac{\Delta\text{ESR}(47)}{\Delta C(47)}$</span></li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <span class="card-tag card-tag-backup">STAGE 4–8</span>
+              <h3 style="margin-top: 8px; font-size: 15px;">6-Fold LOCO Model Fitting</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                Leave-One-Component-Out cross-validation ensures zero data leakage across physical test specimens:
+              </p>
+              <ul class="card-meta-list" style="margin-top: 10px;">
+                <li class="card-meta-item"><span>Fold 1:</span><span>Train: {C2, C3, C4, C5, C6} • Test: {C1}</span></li>
+                <li class="card-meta-item"><span>Fold 2:</span><span>Train: {C1, C3, C4, C5, C6} • Test: {C2}</span></li>
+                <li class="card-meta-item"><span>Fold 3:</span><span>Train: {C1, C2, C4, C5, C6} • Test: {C3}</span></li>
+                <li class="card-meta-item"><span>Fold 4:</span><span>Train: {C1, C2, C3, C5, C6} • Test: {C4}</span></li>
+                <li class="card-meta-item"><span>Fold 5:</span><span>Train: {C1, C2, C3, C4, C6} • Test: {C5}</span></li>
+                <li class="card-meta-item"><span>Fold 6:</span><span>Train: {C1, C2, C3, C4, C5} • Test: {C6}</span></li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <span class="card-tag card-tag-evaluated">STAGE 9–12</span>
+              <h3 style="margin-top: 8px; font-size: 15px;">Comparative Metric Suite</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5;">
+                All three screening levels evaluated against ground-truth labels ($y_i$) on out-of-fold predictions:
+              </p>
+              <ul class="card-meta-list" style="margin-top: 10px;">
+                <li class="card-meta-item"><span>Recall (Defect Detection):</span><span>$\frac{\text{TP}}{\text{TP} + \text{FN}}$ (Primary)</span></li>
+                <li class="card-meta-item"><span>False Negative Rate (Escape):</span><span>$\frac{\text{FN}}{\text{TP} + \text{FN}}$ (Critical Risk)</span></li>
+                <li class="card-meta-item"><span>Yield Loss (False Positive):</span><span>$\frac{\text{FP}}{\text{FP} + \text{TN}}$ (Mission Cost)</span></li>
+                <li class="card-meta-item"><span>Precision & F1-Score:</span><span>$\text{Harmonic Mean}(P, R)$</span></li>
+                <li class="card-meta-item"><span>Hypothesis Testing:</span><span>McNemar's Test & Bootstrap CIs</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Live Screening Execution Card -->
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <h3 style="font-size: 16px;">Out-of-Fold Component Screening Decisions (t_screen = 47.0h)</h3>
+                <p style="font-size: 12.5px; color: var(--text-secondary);">Decisions rendered out-of-fold across 6 Leave-One-Component-Out (LOCO) cross-validation splits.</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-success">6/6 Folds Evaluated</span>
+                <button id="btnRunExperiment" class="btn-primary">Re-Run 6-Fold LOCO Experiment</button>
+              </div>
+            </div>
+
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Component ID</th>
+                    <th>Traditional Spec (20%)</th>
+                    <th>Dynamic Statistical</th>
+                    <th>AI Isolation Forest</th>
+                    <th>AI One-Class SVM</th>
+                    <th>Early Drift Forecast (194h)</th>
+                    <th>Risk Fusion Tier</th>
+                    <th>Ground Truth (Def B)</th>
+                  </tr>
+                </thead>
+                <tbody id="screeningDecisionsTableBody">
+                  <!-- Dynamically populated from /api/experiment/component_results -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== VIEW: ANALYTICS ==================== -->
+        <section id="page-analytics" class="page-view">
+          
+          <div class="research-alert" style="border-left-color: #059669; background-color: rgba(5, 150, 105, 0.08);">
+            <h3 style="color: #34d399;">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.707l-4.146 4.147a.5.5 0 0 1-.708 0L7 6.707l-4.146 4.147a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0L9.5 7.793 13.293 4H10.5a.5.5 0 0 1-.5-.5z"/></svg>
+              Step 4 Measured Findings: Dynamic Screening Detects Latent Defects While Traditional Fails
+            </h3>
+            <p>
+              Under identical 6-fold LOCO testing at $t_{\text{screen}} = 47.0\,\text{h}$, Traditional screening achieves <strong>0.0% Recall (100% False Negative Escape Rate)</strong>. In contrast, <strong>One-Class SVM achieves 80.0% Recall</strong>, <strong>Early Drift Forecasting achieves 100.0% Recall</strong> (MAE = 1.334%), and <strong>Dynamic Statistical screening achieves 60.0% Recall</strong>, delivering an average advance warning lead time of <strong>139 to 142 hours</strong> before physical specification violation.
+            </p>
+          </div>
+
+          <!-- Master Metrics Table -->
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <div>
+                <h3 style="font-size: 16px;">Master Screening Performance Comparison Table</h3>
+                <p style="font-size: 12.5px; color: var(--text-secondary);">Evaluated strictly on identical out-of-fold unseen test components.</p>
+              </div>
+              <span class="badge badge-info">Frozen Ground Truth Vector [C1=0, C2-C6=1]</span>
+            </div>
+
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Screening Paradigm</th>
+                    <th>Recall (Defect Detection)</th>
+                    <th>False Negative Rate (Escape)</th>
+                    <th>Precision</th>
+                    <th>F1-Score</th>
+                    <th>Yield Loss (FPR)</th>
+                    <th>PR-AUC</th>
+                    <th>Mean Early Lead Time</th>
+                  </tr>
+                </thead>
+                <tbody id="analyticsMetricsTableBody">
+                  <!-- Dynamically populated from /api/experiment/results -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Analytics Figure Gallery -->
+          <div class="section-heading" style="margin-bottom: 14px;">
+            <span>Empirical Analytics & Performance Visualizations</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Generated from actual experiment outputs</span>
+          </div>
+
+          <div class="figure-grid">
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig1_method_comparison_bars.png" alt="Figure 1: Comparative Screening Performance">
+              <div class="figure-caption"><strong>Figure 1:</strong> Comparative screening metrics (Recall, Precision, F1, FPR) across all 5 paradigms on identical test splits.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig4_precision_recall_curves.png" alt="Figure 4: Precision-Recall Curves">
+              <div class="figure-caption"><strong>Figure 4:</strong> Precision vs Recall trade-off prioritizing latent defect detection over zero yield loss.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig2_confusion_matrix_traditional.png" alt="Figure 2: Traditional Confusion Matrix">
+              <div class="figure-caption"><strong>Figure 2:</strong> Confusion matrix for Traditional screening illustrating 100% false negative escape rate.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig3_confusion_matrix_aiml.png" alt="Figure 3: AI/ML Confusion Matrix">
+              <div class="figure-caption"><strong>Figure 3:</strong> Confusion matrix for Risk Fusion Engine illustrating successful early defect capture.</div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== VIEW: EXPLAINABILITY ==================== -->
+        <section id="page-explainability" class="page-view">
+          
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <h3 id="explainCompIdTitle" style="font-size: 16px;">Component C4 Diagnostic Breakdown</h3>
+                <p style="font-size: 12.5px; color: var(--text-secondary);">Multi-paradigm physical attribution and explainability for qualification engineers.</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span id="explainTierBadge" class="badge badge-warning" style="background-color:#991b1b;color:#fecaca;font-weight:700;">HIGH RISK</span>
+                <span id="explainScoreBadge" class="badge badge-info">Risk Score: 0.55</span>
+                <select id="explainCompSelect" class="select-control"></select>
+              </div>
+            </div>
+
+            <!-- Plain-language physical explanation -->
+            <div class="traceability-box" style="margin-bottom: 18px; border-left: 4px solid var(--accent-rose);">
+              <h4 class="trace-title" style="color: #f87171;">Comprehensive Engineering Disposition</h4>
+              <p id="explainText" style="font-size: 13px; color: #f1f5f9; line-height: 1.6; margin-top: 6px;">
+                Loading component diagnostic telemetry...
+              </p>
+            </div>
+
+            <!-- Four-pillar diagnostic metrics -->
+            <div class="card-grid" style="margin-bottom: 0;">
+              <div class="card" style="background-color: var(--bg-surface);">
+                <span class="card-tag card-tag-backup">LEVEL 1: SPEC MARGIN</span>
+                <h4 style="margin-top: 8px; font-size: 14px;">Traditional Margin</h4>
+                <p id="exp_trad_margin" style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">—</p>
+              </div>
+              <div class="card" style="background-color: var(--bg-surface);">
+                <span class="card-tag card-tag-primary">LEVEL 2: POPULATION OUTLIER</span>
+                <h4 style="margin-top: 8px; font-size: 14px;">Statistical Z-Score</h4>
+                <p id="exp_stat_z" style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">—</p>
+              </div>
+              <div class="card" style="background-color: var(--bg-surface);">
+                <span class="card-tag card-tag-evaluated">LEVEL 3: AI ATTRIBUTION</span>
+                <h4 style="margin-top: 8px; font-size: 14px;">Top Precursor Signal</h4>
+                <p id="exp_aiml_att" style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">—</p>
+              </div>
+              <div class="card" style="background-color: var(--bg-surface);">
+                <span class="card-tag" style="background-color: rgba(16, 185, 129, 0.2); color: #34d399;">LEVEL 4: DRIFT FORECAST</span>
+                <h4 style="margin-top: 8px; font-size: 14px;">End-of-Life Forecast</h4>
+                <p id="exp_drift_val" style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">—</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explainability Figure Gallery -->
+          <div class="section-heading" style="margin-bottom: 14px;">
+            <span>Physical Precursor & Trajectory Figures</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Attribution diagnostics</span>
+          </div>
+
+          <div class="figure-grid">
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig11_feature_importance_attribution.png" alt="Figure 11: Feature Importance">
+              <div class="figure-caption"><strong>Figure 11:</strong> Standardized feature deviations identifying primary physical degradation precursors.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig8_actual_vs_predicted_drift.png" alt="Figure 8: Actual vs Predicted Drift">
+              <div class="figure-caption"><strong>Figure 8:</strong> Early drift forecast accuracy at 194h (MAE = 1.334%) against actual end-of-life degradation.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig6_anomaly_score_distribution.png" alt="Figure 6: Anomaly Score Distribution">
+              <div class="figure-caption"><strong>Figure 6:</strong> Isolation Forest anomaly score distribution separating high-drift units at 47.0h.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig9_degradation_trajectories_with_forecast.png" alt="Figure 9: Longitudinal Trajectories">
+              <div class="figure-caption"><strong>Figure 9:</strong> Longitudinal degradation trajectories across all 6 units with 47h screening horizon.</div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== VIEW: MODEL COMPARISON ==================== -->
+        <section id="page-comparison" class="page-view">
+          
+          <!-- Master Benchmark Matrix -->
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <div>
+                <h3 style="font-size: 16px;">Seven-Paradigm Comparative Benchmark Matrix</h3>
+                <p style="font-size: 12.5px; color: var(--text-secondary);">Direct side-by-side performance on identical 6-fold Leave-One-Component-Out (LOCO) test sets.</p>
+              </div>
+              <span class="badge badge-success">LOCO Cross-Validated</span>
+            </div>
+
+            <div class="table-wrapper" style="margin-bottom: 0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Screening Paradigm</th>
+                    <th>Test Set</th>
+                    <th>TP</th>
+                    <th>FP</th>
+                    <th>FN</th>
+                    <th>TN</th>
+                    <th>Recall</th>
+                    <th>FNR</th>
+                    <th>Precision</th>
+                    <th>F1</th>
+                    <th>PR-AUC</th>
+                    <th>Lead Time</th>
+                  </tr>
+                </thead>
+                <tbody id="comparisonMatrixTableBody">
+                  <!-- Dynamically populated from /api/experiment/results -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Statistical Significance & Robustness Testing -->
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; margin-bottom: 6px;">Statistical Significance Testing (Small-Sample Non-Parametric Framework)</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 16px;">
+              Exact McNemar paired binary discordance tests and 2,000 paired bootstrap iterations accounting for N=6 discrete components.
+            </p>
+            <div id="significanceTestsContent">
+              <!-- Dynamically populated from /api/experiment/metadata -->
+            </div>
+          </div>
+
+          <!-- Comparison Figures -->
+          <div class="section-heading" style="margin-bottom: 14px;">
+            <span>Benchmark Comparison Figures</span>
+            <span style="font-size: 12px; color: var(--text-muted);">Publication visual comparisons</span>
+          </div>
+
+          <div class="figure-grid">
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig12_decision_boundary_comparison.png" alt="Figure 12: Decision Matrix Heatmap">
+              <div class="figure-caption"><strong>Figure 12:</strong> Decision matrix heatmap comparing component-level dispositions across all 7 paradigms.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig10_early_lead_time_timeline.png" alt="Figure 10: Early Lead Time Timeline">
+              <div class="figure-caption"><strong>Figure 10:</strong> Advance warning lead times (124h to 147h) provided prior to physical MIL-PRF-62F failure.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig7_component_risk_ranking.png" alt="Figure 7: Component Risk Ranking">
+              <div class="figure-caption"><strong>Figure 7:</strong> Fused multi-paradigm risk score ranking prioritizing high-risk components.</div>
+            </div>
+            <div class="figure-card">
+              <img src="/api/experiment/figure?name=fig5_roc_curves.png" alt="Figure 5: Operating Characteristics">
+              <div class="figure-caption"><strong>Figure 5:</strong> Operating characteristic comparison (Yield Loss vs Defect Recall).</div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== VIEW: RESEARCH VALIDATION & REPORT ==================== -->
+        <section id="page-report" class="page-view">
+          <!-- Step 5 Subtab Navigation -->
+          <div class="subtab-nav">
+            <button class="subtab-btn active" data-subtab="subtab-audit">Results Audit (101 Checks)</button>
+            <button class="subtab-btn" data-subtab="subtab-error">Forensic Error Analysis</button>
+            <button class="subtab-btn" data-subtab="subtab-ablation">Ablation Study</button>
+            <button class="subtab-btn" data-subtab="subtab-sensitivity">Threshold Sensitivity</button>
+            <button class="subtab-btn" data-subtab="subtab-cost">Cost-Sensitive Economics</button>
+            <button class="subtab-btn" data-subtab="subtab-step5figures">Step 5 Publication Figures</button>
+            <button class="subtab-btn" data-subtab="subtab-conclusion">Evidence-Based Conclusion</button>
+          </div>
+
+          <!-- SUBTAB 1: AUDIT -->
+          <div id="subtab-audit" class="subtab-content active">
+            <div class="card" style="margin-bottom: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h3 style="font-size: 16px; margin: 0;">Step 4 Metric Audit & Independent Verification</h3>
+                <span class="badge badge-success" id="auditStatusBadge">101/101 Verified Exact Match (0 Discrepancies)</span>
+              </div>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+                Byte-for-byte independent reproduction of all confusion matrices, metrics, lead times, regression errors, and hypothesis test p-values from raw component predictions.
+              </p>
+              <div class="table-container" style="max-height: 420px; overflow-y: auto;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Method</th>
+                      <th>Metric</th>
+                      <th>Step 4 Reported</th>
+                      <th>Reproduced</th>
+                      <th>Difference</th>
+                      <th>Audit Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="auditTableBody">
+                    <!-- Populated from /api/validation/audit -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 2: ERROR ANALYSIS -->
+          <div id="subtab-error" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <h3 style="font-size: 16px; margin-bottom: 6px;">Component-by-Component Classification Breakdown</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+                Forensic classification profile (TP, FP, TN, FN) for each physical component across all screening paradigms.
+              </p>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Ground Truth</th>
+                      <th>Traditional</th>
+                      <th>Statistical</th>
+                      <th>OC-SVM</th>
+                      <th>Drift Forecast</th>
+                      <th>Risk Fusion</th>
+                      <th>Actual 194h</th>
+                      <th>Forecast 194h</th>
+                      <th>Lead Time</th>
+                    </tr>
+                  </thead>
+                  <tbody id="errorAnalysisTableBody">
+                    <!-- Populated from /api/validation/component_errors -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card-grid">
+              <div class="card">
+                <span class="card-tag card-tag-danger">SAFETY CRITICAL</span>
+                <h4 style="margin: 8px 0 4px 0;">False Negative Analysis (Escaped Defects)</h4>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+                  Latent defects missed during screening:
+                </p>
+                <ul style="font-size: 12px; color: var(--text-secondary); padding-left: 18px; line-height: 1.6;">
+                  <li><strong>Traditional ESS:</strong> Missed 5/5 defects (100% escape) because ΔC &lt; 1.86% &lt;&lt; 20.0% at 47h.</li>
+                  <li><strong>Dynamic Statistical:</strong> Missed C3 & C5 (stealth incubators whose initial velocity matched lot median).</li>
+                  <li><strong>One-Class SVM:</strong> Missed C5 (canonical feature vector within support boundary).</li>
+                  <li><strong>Early Drift Forecaster:</strong> <strong>0 Escapes (100% recall)</strong> — intercepted all 5 latent defects.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-tag card-tag-warning">YIELD LOSS</span>
+                <h4 style="margin: 8px 0 4px 0;">False Positive Analysis (Survivor C1 Investigation)</h4>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+                  Root cause of false alarms on healthy unit C1:
+                </p>
+                <ul style="font-size: 12px; color: var(--text-secondary); padding-left: 18px; line-height: 1.6;">
+                  <li><strong>Symmetric Distance Bias:</strong> C1 degraded <em>less</em> than damaged cohort median (Z_MAD = -6.76). Unsupervised distance flagged it as an outlier.</li>
+                  <li><strong>Linear Drift Extrapolation:</strong> Over-extrapolated early settling slope to 21.57% (actual was 17.45%).</li>
+                  <li><strong>Engineering Remedy:</strong> Directional (one-sided) screening (Z &gt; +2.5) eliminates C1 false alarm (FPR drops to 0.0%).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 3: ABLATION -->
+          <div id="subtab-ablation" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <h3 style="font-size: 16px; margin-bottom: 6px;">Screening Paradigm Ablation Study</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+                Evaluates the incremental performance contribution of individual vs combined screening modules.
+              </p>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Paradigm</th>
+                      <th>Description</th>
+                      <th>Recall</th>
+                      <th>FNR</th>
+                      <th>Precision</th>
+                      <th>F1-Score</th>
+                      <th>FPR</th>
+                      <th>Lead Time</th>
+                      <th>Δ Recall vs Trad</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ablationTableBody">
+                    <!-- Populated from /api/validation/ablation -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 4: SENSITIVITY -->
+          <div id="subtab-sensitivity" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <h3 style="font-size: 16px; margin-bottom: 6px;">Controlled Threshold Sensitivity Analysis</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+                Systematic parameter sweeps across Robust-Z cutoffs, OC-SVM offsets, Drift safety limits, and Risk Fusion thresholds.
+              </p>
+              <div class="table-container" style="max-height: 420px; overflow-y: auto;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Model Name</th>
+                      <th>Parameter Name</th>
+                      <th>Threshold Value</th>
+                      <th>Recall</th>
+                      <th>FNR</th>
+                      <th>Precision</th>
+                      <th>F1-Score</th>
+                      <th>FPR</th>
+                      <th>Configuration</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sensitivityTableBody">
+                    <!-- Populated from /api/validation/sensitivity -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 5: COST SENSITIVITY -->
+          <div id="subtab-cost" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <h3 style="font-size: 16px; margin-bottom: 6px;">Aerospace Risk Economics & Cost-Sensitive Analysis</h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+                Total expected screening cost as a function of the catastrophic defect escape cost ratio (C_FN / C_FP).
+              </p>
+              <div class="table-container" style="max-height: 380px; overflow-y: auto;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Cost Ratio (C_FN / C_FP)</th>
+                      <th>Method</th>
+                      <th>FNs</th>
+                      <th>FPs</th>
+                      <th>Total Cost</th>
+                      <th>Cost / Comp</th>
+                      <th>Savings vs Trad</th>
+                      <th>Savings (%)</th>
+                      <th>Superior?</th>
+                    </tr>
+                  </thead>
+                  <tbody id="costTableBody">
+                    <!-- Populated from /api/validation/cost_analysis -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 6: STEP 5 FIGURES -->
+          <div id="subtab-step5figures" class="subtab-content">
+            <div class="section-heading" style="margin-bottom: 14px;">
+              <span>Step 5 Publication Research Figures (300 DPI)</span>
+              <span style="font-size: 12px; color: var(--text-muted);">Generated by figures_generator.py</span>
+            </div>
+
+            <div class="figure-grid">
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig1_performance_radar" alt="Figure 1: Performance Radar">
+                <div class="figure-caption"><strong>Figure 1:</strong> Multi-metric radar comparison across all screening paradigms.</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig2_recall_vs_fpr_tradeoff" alt="Figure 2: Safety vs Yield Loss Trade-off">
+                <div class="figure-caption"><strong>Figure 2:</strong> Defect Recall vs Yield Loss (FPR) Pareto operating frontier.</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig3_component_error_breakdown" alt="Figure 3: Component Error Breakdown">
+                <div class="figure-caption"><strong>Figure 3:</strong> Forensic component error classification matrix (TP, FP, TN, FN).</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig4_threshold_sensitivity_curves" alt="Figure 4: Threshold Sensitivity Curves">
+                <div class="figure-caption"><strong>Figure 4:</strong> Controlled screening threshold sensitivity curves across 4 parameters.</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig5_early_warning_timeline" alt="Figure 5: Early Warning Timeline">
+                <div class="figure-caption"><strong>Figure 5:</strong> Early warning advance notice timeline (124h to 147h lead time).</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig6_drift_forecast_error_scatter" alt="Figure 6: Drift Forecast Error Scatter">
+                <div class="figure-caption"><strong>Figure 6:</strong> Predicted vs actual degradation at 194h (MAE = 1.33%).</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig7_ablation_waterfall" alt="Figure 7: Ablation Waterfall">
+                <div class="figure-caption"><strong>Figure 7:</strong> Incremental recall and F1 gains across ablation paradigms.</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig8_cost_sensitive_curves" alt="Figure 8: Cost-Sensitive Curves">
+                <div class="figure-caption"><strong>Figure 8:</strong> Expected screening cost vs critical ratio (C_FN / C_FP) with crossover.</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig9_explainability_deviations" alt="Figure 9: Explainability Deviations">
+                <div class="figure-caption"><strong>Figure 9:</strong> Standardized feature deviations providing explainability rationales.</div>
+              </div>
+              <div class="figure-card">
+                <img src="/api/validation/figure?name=fig10_research_architecture_summary" alt="Figure 10: Research Framework Architecture">
+                <div class="figure-caption"><strong>Figure 10:</strong> End-to-end multi-level predictive screening pipeline architecture.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 7: SCIENTIFIC CONCLUSION -->
+          <div id="subtab-conclusion" class="subtab-content">
+            <div class="card" style="margin-bottom: 20px;">
+              <span class="card-tag card-tag-primary">FORMAL RESEARCH CONCLUSION</span>
+              <h3 style="font-size: 18px; margin: 10px 0 8px 0;">Audited Scientific Findings on Predictive ESS Screening</h3>
+              <blockquote style="font-size: 14px; font-style: italic; color: #34d399; background: rgba(52, 211, 153, 0.08); padding: 14px 18px; border-left: 4px solid #34d399; margin: 12px 0; border-radius: 4px;">
+                "On this dataset, predictive AI/ML and dynamic statistical screening demonstrated substantially improved latent defect recall (60% to 100% vs 0% for traditional screening) with 139 to 142 hours of predictive lead time, but at the cost of increased false alarms / yield loss on this small-sample cohort (N=6)."
+              </blockquote>
+
+              <div class="card-grid" style="margin-top: 16px;">
+                <div class="card" style="background-color: var(--bg-surface);">
+                  <h4 style="font-size: 14px; color: #38bdf8;">Demonstrated Scientific Contributions</h4>
+                  <ul style="font-size: 12px; color: var(--text-secondary); padding-left: 18px; line-height: 1.6; margin-top: 6px;">
+                    <li><strong>Predictive Kinetic Advantage:</strong> Trajectory forecasting achieves 100% recall vs 0% for static limits.</li>
+                    <li><strong>Advance Warning Notice:</strong> Provides 124h to 147h lead time before specification breach.</li>
+                    <li><strong>Transparent Explainability:</strong> Every rejection explained via standardized physical deviations.</li>
+                    <li><strong>Ablation Confirmation:</strong> Trajectory forecasting proved superior to purely spatial anomaly clustering.</li>
+                  </ul>
+                </div>
+                <div class="card" style="background-color: var(--bg-surface);">
+                  <h4 style="font-size: 14px; color: #fbbf24;">Small-Sample Boundaries & Limitations</h4>
+                  <ul style="font-size: 12px; color: var(--text-secondary); padding-left: 18px; line-height: 1.6; margin-top: 6px;">
+                    <li><strong>Single Survivor Penalty:</strong> 1 false positive on C1 mathematically yields 100% nominal FPR.</li>
+                    <li><strong>Sample Size Bound (N=6):</strong> Exact McNemar tests yield p=0.22-0.38; frequentist power limited.</li>
+                    <li><strong>Symmetric Distance Flaw:</strong> Unsupervised 2-sided tests penalize low degradation rates.</li>
+                    <li><strong>Future Scope:</strong> Directional screening and larger multi-lot validation cohorts required.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

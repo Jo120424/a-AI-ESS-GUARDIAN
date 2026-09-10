@@ -1,0 +1,121 @@
+{
+  "experiment_name": "predictive_ess_comparative_screening_step4",
+  "timestamp": "2026-09-10T11:11:34.153711",
+  "execution_duration_seconds": 14.03,
+  "dataset": "NASA Capacitor Electrical Stress Degradation Dataset (EOS_DataSet.mat)",
+  "dataset_sha256": "4b1bf4151d02e39819eff3d2b535229a739c01556da84b99ae0adc16f69bdf5e",
+  "screening_window_hours": 47.0,
+  "total_test_duration_hours": 194.0,
+  "number_of_components": 6,
+  "ground_truth_latent_defects": 5,
+  "ground_truth_safe_survivors": 1,
+  "cross_validation": "6-Fold Leave-One-Component-Out (LOCO)",
+  "random_seed": 42,
+  "drift_prediction": {
+    "target_horizon_hours": 194.0,
+    "mae_pct": 1.3337,
+    "rmse_pct": 1.911
+  },
+  "statistical_hypothesis_tests": {
+    "mcnemar_trad_vs_isolation_forest": {
+      "b_discordant (A correct, B incorrect)": 0,
+      "c_discordant (A incorrect, B correct)": 0,
+      "total_discordant": 0,
+      "exact_p_value": 1.0,
+      "statistically_significant_005": false
+    },
+    "mcnemar_trad_vs_one_class_svm": {
+      "b_discordant (A correct, B incorrect)": 1,
+      "c_discordant (A incorrect, B correct)": 4,
+      "total_discordant": 5,
+      "exact_p_value": 0.375,
+      "statistically_significant_005": false
+    },
+    "mcnemar_trad_vs_drift_forecast": {
+      "b_discordant (A correct, B incorrect)": 1,
+      "c_discordant (A incorrect, B correct)": 5,
+      "total_discordant": 6,
+      "exact_p_value": 0.21875,
+      "statistically_significant_005": false
+    },
+    "mcnemar_trad_vs_dynamic_statistical": {
+      "b_discordant (A correct, B incorrect)": 1,
+      "c_discordant (A incorrect, B correct)": 3,
+      "total_discordant": 4,
+      "exact_p_value": 0.625,
+      "statistically_significant_005": false
+    },
+    "mcnemar_trad_vs_risk_fusion": {
+      "b_discordant (A correct, B incorrect)": 1,
+      "c_discordant (A incorrect, B correct)": 3,
+      "total_discordant": 4,
+      "exact_p_value": 0.625,
+      "statistically_significant_005": false
+    },
+    "bootstrap_trad_vs_isolation_forest_95ci": {
+      "delta_recall_mean": 0.0,
+      "delta_recall_ci_95": [
+        0.0,
+        0.0
+      ],
+      "delta_f1_mean": 0.0,
+      "delta_f1_ci_95": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_iterations": 2000
+    },
+    "bootstrap_trad_vs_one_class_svm_95ci": {
+      "delta_recall_mean": 0.7951,
+      "delta_recall_ci_95": [
+        0.4,
+        1.0
+      ],
+      "delta_f1_mean": 0.7781,
+      "delta_f1_ci_95": [
+        0.5,
+        1.0
+      ],
+      "bootstrap_iterations": 2000
+    },
+    "bootstrap_trad_vs_drift_forecast_95ci": {
+      "delta_recall_mean": 1.0,
+      "delta_recall_ci_95": [
+        1.0,
+        1.0
+      ],
+      "delta_f1_mean": 0.8985,
+      "delta_f1_ci_95": [
+        0.6667,
+        1.0
+      ],
+      "bootstrap_iterations": 2000
+    },
+    "bootstrap_trad_vs_dynamic_statistical_95ci": {
+      "delta_recall_mean": 0.5997,
+      "delta_recall_ci_95": [
+        0.1667,
+        1.0
+      ],
+      "delta_f1_mean": 0.6397,
+      "delta_f1_ci_95": [
+        0.2857,
+        0.9091
+      ],
+      "bootstrap_iterations": 2000
+    },
+    "bootstrap_trad_vs_risk_fusion_95ci": {
+      "delta_recall_mean": 0.5997,
+      "delta_recall_ci_95": [
+        0.1667,
+        1.0
+      ],
+      "delta_f1_mean": 0.6397,
+      "delta_f1_ci_95": [
+        0.2857,
+        0.9091
+      ],
+      "bootstrap_iterations": 2000
+    }
+  }
+}

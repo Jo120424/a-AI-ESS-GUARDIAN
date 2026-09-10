@@ -1,0 +1,44 @@
+{
+  "dataset_name": "AI-ESS Guardian Semiconductor Burn-In Benchmark Dataset",
+  "type": "SYNTHETIC DEMONSTRATION DATASET",
+  "description": "Longitudinal burn-in screening panel with 0h, 24h, 96h, and 168h checkpoints across 3 manufacturing lots.",
+  "parameters": {
+    "leakage_current_ua": {
+      "unit": "uA",
+      "spec_limit": 50.0,
+      "nominal": 10.0
+    },
+    "iddq_ma": {
+      "unit": "mA",
+      "spec_limit": 5.0,
+      "nominal": 1.5
+    },
+    "propagation_delay_ns": {
+      "unit": "ns",
+      "spec_limit": 15.0,
+      "nominal": 8.5
+    }
+  },
+  "checkpoints_hours": [
+    0.0,
+    24.0,
+    96.0,
+    168.0
+  ],
+  "total_records": 360,
+  "total_components": 90,
+  "lots": [
+    "LOT_A_2026",
+    "LOT_B_2026",
+    "LOT_C_2026"
+  ],
+  "archetypes": {
+    "HEALTHY_STABLE": 224,
+    "MILD_DRIFT": 52,
+    "LATENT_DEFECT_LOT_OUTLIER": 40,
+    "ACCELERATING_DRIFT": 24,
+    "ABSOLUTE_SPEC_VIOLATION": 12,
+    "SUDDEN_JUMP": 8
+  },
+  "classic_sih_example_component": "IC_A_002"
+}

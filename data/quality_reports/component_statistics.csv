@@ -1,0 +1,7 @@
+component_id,lot_id,observation_count,min_time_hours,max_time_hours,initial_delta_c_pct,final_delta_c_pct,initial_delta_esr_pct,final_delta_esr_pct,spec_violation,first_violation_time_hours
+C1,LOT_10V_EOS,11,0.0,194.0,0.0,17.45,0.0,53.54,False,
+C2,LOT_10V_EOS,11,0.0,194.0,0.0,21.68,0.0,51.04,True,194.0
+C3,LOT_10V_EOS,11,0.0,194.0,0.0,21.045,0.0,52.389,True,194.0
+C4,LOT_10V_EOS,11,0.0,194.0,0.0,22.675,0.0,53.298,True,171.0
+C5,LOT_10V_EOS,11,0.0,194.0,0.0,20.79666667,0.0,52.52616667,True,194.0
+C6,LOT_10V_EOS,11,0.0,194.0,0.0,22.04,0.0,52.03,True,194.0

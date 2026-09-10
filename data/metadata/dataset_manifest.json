@@ -1,0 +1,24 @@
+{
+  "dataset_manifest_version": "1.0",
+  "generated_timestamp": "2026-09-09T10:21:43.149475+00:00",
+  "raw_dataset": {
+    "file_name": "EOS_DataSet.mat",
+    "file_path": "data\\raw\\nasa_capacitor_electrical_stress\\EOS_DataSet.mat",
+    "size_bytes": 1090,
+    "sha256": "9db651a10f92d2046a477838c08fe1cdbaf27d7bc4062a856a373721400cb4a3"
+  },
+  "processed_dataset": {
+    "file_name": "dataset_processed.csv",
+    "file_path": "data\\processed\\dataset_processed.csv",
+    "size_bytes": 5378,
+    "sha256": "4b1bf4151d02e39819eff3d2b535229a739c01556da84b99ae0adc16f69bdf5e",
+    "row_count": 66,
+    "column_count": 14
+  },
+  "software_environment": {
+    "python_version": "3.14.6",
+    "pandas_version": "3.0.5",
+    "numpy_version": "2.5.3",
+    "scipy_version": "1.18.1"
+  }
+}

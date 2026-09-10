@@ -1,0 +1,7 @@
+Comparison,Metric,Observed Value,Bootstrap 95% CI (2000 reps),Exact McNemar p-value,Statistical Interpretation
+One-Class SVM vs Traditional ESS,Delta Recall,+0.8000,"[+0.4000, +1.0000]",0.3750,Bootstrap CI strictly > 0; McNemar constrained by N=6
+Early Drift Forecaster vs Traditional ESS,Delta Recall,+1.0000,"[+1.0000, +1.0000]",0.2188,Unanimous recall superiority across all resamples
+Dynamic Statistical vs Traditional ESS,Delta Recall,+0.6000,"[+0.1667, +1.0000]",0.6250,Bootstrap CI strictly > 0; 3 of 5 defects flagged
+Risk Fusion vs Traditional ESS,Delta Recall,+0.6000,"[+0.1667, +1.0000]",0.6250,Strict rejection achieves 60%; quarantine achieves 100%
+One-Class SVM vs Traditional ESS,Delta F1-Score,+0.8000,"[+0.5000, +1.0000]",N/A,Significant overall harmonic improvement
+Early Drift Forecaster vs Traditional ESS,Delta F1-Score,+0.9091,"[+0.6667, +1.0000]",N/A,Highest overall classification balance

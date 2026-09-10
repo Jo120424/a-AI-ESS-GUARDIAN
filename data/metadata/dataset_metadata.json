@@ -1,0 +1,52 @@
+{
+  "dataset_name": "NASA Capacitor Electrical Stress Degradation Dataset",
+  "source": "NASA Ames Research Center, Prognostics Center of Excellence (PCoE)",
+  "source_url": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/",
+  "original_paper": "Celaya, J. R., Kulkarni, C., Biswas, G., & Goebel, K. (2012). Towards A Model-based Prognostics Methodology for Electrolytic Capacitors: A Case Study Based on Electrical Overstress Accelerated Aging. Annual Conference of the PHM Society; and Renwick, J., Kulkarni, C., & Celaya, J. (2015). Analysis of Electrolytic Capacitor Degradation under Electrical Overstress for Prognostic Studies.",
+  "classification": "C — ACCELERATED LIFE / DEGRADATION DATASET",
+  "component_count": 24,
+  "observation_count": "Multiple continuous charge/discharge cycles and EIS frequency sweeps per component across lifetime (thousands of time-series observations)",
+  "features": [
+    "capacitance_C",
+    "equivalent_series_resistance_ESR",
+    "impedance_magnitude_Z",
+    "impedance_phase_theta",
+    "charge_time_tch",
+    "discharge_time_tdis",
+    "terminal_voltage_V",
+    "excitation_frequency_f",
+    "cycle_index",
+    "chamber_temperature_T"
+  ],
+  "units": {
+    "capacitance_C": "Farads (uF)",
+    "equivalent_series_resistance_ESR": "Ohms",
+    "impedance_magnitude_Z": "Ohms",
+    "impedance_phase_theta": "Degrees / Radians",
+    "charge_time_tch": "Seconds",
+    "discharge_time_tdis": "Seconds",
+    "terminal_voltage_V": "Volts",
+    "excitation_frequency_f": "Hertz (Hz)",
+    "chamber_temperature_T": "Degrees Celsius"
+  },
+  "time_series_available": true,
+  "component_id_available": true,
+  "lot_id_available": true,
+  "failure_labels_available": true,
+  "degradation_labels_available": true,
+  "environmental_variables": [
+    "Applied Electrical Overstress Voltage (10V, 12V, 14V)",
+    "Chamber Temperature"
+  ],
+  "static_threshold_available": true,
+  "static_threshold_rationale": "Standard industry datasheet limit per MIL-PRF-62F and Vishay/Nichicon capacitor specifications: End-of-Life defined when Capacitance loss exceeds 20% (Delta C / C0 <= -0.20) or ESR exceeds 200% of nominal (ESR >= 2.0 * ESR0).",
+  "anomaly_detection_supported": true,
+  "degradation_prediction_supported": true,
+  "latent_risk_proxy_supported": true,
+  "latent_risk_proxy_definition": "A component is defined as harboring a latent risk if at screening cutoff cycle (t_screen), its parametric drift is within acceptable static tolerance (Pass by Traditional Screening), but it subsequently experiences end-of-life failure or accelerated degradation during remaining operational cycles (t_final).",
+  "limitations": [
+    "Component population is 24 units across 3 voltage cohorts (8 units per condition); requires strict leave-one-group-out or leave-one-component-out cross-validation to prevent data leakage.",
+    "Degradation is driven by accelerated electrical overstress rather than multi-axis random vibration or thermal cycling profiles.",
+    "Latent defects are manifested through accelerated stress testing rather than naturally occurring semiconductor fab defects, requiring rigorous proxy justification."
+  ]
+}
