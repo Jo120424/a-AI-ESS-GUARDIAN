@@ -597,51 +597,63 @@ if active_section == "OVERVIEW":
 
     ledger_df = pd.DataFrame(table_rows)
 
-    # HTML Render for Engineering Ledger with subtle vertical red accent on IC_A_002
-    html_lines = [
-        '<div style="overflow-x: auto; margin-bottom: 24px;">',
-        '<table class="eng-ledger">',
-        '<thead><tr>',
-        '<th>COMPONENT</th><th>LOT</th><th>PARAMETER</th>',
-        '<th class="text-right">0h</th><th class="text-right">24h</th><th class="text-right">96h</th><th class="text-right">168h</th>',
-        '<th class="text-right">LOT MEDIAN</th><th class="text-right">DEVIATION</th><th>RISK</th><th>DECISION</th>',
-        '</tr></thead><tbody>'
-    ]
+    # Editorial Outlier Spotlight Callout for IC_A_002
+    target_unit = screened_df[screened_df["component_id"] == "IC_A_002"].iloc[0] if "IC_A_002" in screened_df["component_id"].values else screened_df.iloc[0]
+    st.markdown(f"""
+    <div style="border-left: 3px solid #8A3434; background: #ECE5DE; padding: 14px 18px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; color: #8A3434; letter-spacing: 0.08em;">
+                ATTENTION &bull; LATENT KINETIC ANOMALY IDENTIFIED: {target_unit['component_id']}
+            </span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; color: #8A3434; letter-spacing: 0.08em;">
+                DISPOSITION: {target_unit['final_decision']}
+            </span>
+        </div>
+        <div style="font-size: 0.84rem; color: #444440; margin-top: 6px; line-height: 1.5;">
+            Component <strong>{target_unit['component_id']}</strong> ({target_unit['lot_id']}) operates within nominal datasheet limits at 24h (<strong>{target_unit['leakage_24h']:.1f} µA</strong> &le; 50.0 µA), but exhibits a <strong>{target_unit['leakage_mult_of_lot_median']:.2f}&times;</strong> deviation from its manufacturing lot baseline (MAD Robust Z = +{target_unit['max_robust_z']:.2f}). Projected 168h endpoint reaches <strong>{target_unit['predicted_168h']:.1f} µA</strong> (Risk: HIGH).
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    # Show first 15 representative units with IC_A_002 highlighted
-    for r in table_rows[:15]:
-        is_target = (r["Component"] == "IC_A_002")
-        tr_class = ' class="row-highlight-review"' if is_target else ''
-        dec_badge = f'<span class="badge-eng-{"reject" if r["Decision"]=="REJECT" else ("review" if r["Decision"]=="REVIEW" else "pass")}">{r["Decision"]}</span>'
-
-        html_lines.append(f"""
-        <tr{tr_class}>
-            <td class="font-mono"><strong>{r['Component']}</strong></td>
-            <td>{r['Lot']}</td>
-            <td>{r['Parameter']}</td>
-            <td class="font-mono text-right">{r['0h']:.1f} µA</td>
-            <td class="font-mono text-right">{r['24h']:.1f} µA</td>
-            <td class="font-mono text-right">{r['96h']:.1f} µA</td>
-            <td class="font-mono text-right">{r['168h']:.1f} µA</td>
-            <td class="font-mono text-right">{r['Lot Median']:.1f} µA</td>
-            <td class="font-mono text-right">{r['Deviation']:+.1f}%</td>
-            <td class="font-mono">{r['Risk']}</td>
-            <td>{dec_badge}</td>
-        </tr>
-        """)
-
-    html_lines.append('</tbody></table></div>')
-    st.markdown("".join(html_lines), unsafe_allow_html=True)
-
-    # Action selector to jump to component detail
-    col_jump1, col_jump2 = st.columns([3, 1])
-    with col_jump1:
-        st.caption("Displaying initial 15 components. Unit IC_A_002 is flagged via lot-relative MAD divergence.")
-    with col_jump2:
+    # Filter Controls & Direct Drilldown Action
+    col_f1, col_f2, col_jump = st.columns([1.5, 1.5, 2])
+    with col_f1:
+        lot_filter = st.selectbox("Cohort Filter", ["All Lots"] + sorted(list(screened_df["lot_id"].unique())), key="ov_lot_f")
+    with col_f2:
+        dec_filter = st.selectbox("Disposition Filter", ["All Dispositions", "PASS", "REVIEW", "REJECT"], key="ov_dec_f")
+    with col_jump:
+        st.write("")
         if st.button("INSPECT IC_A_002 IN DETAIL →", use_container_width=True):
             st.session_state.selected_cid = "IC_A_002"
             st.session_state.active_tab = "SCREEN COMPONENTS"
             st.rerun()
+
+    view_ledger = ledger_df.copy()
+    if lot_filter != "All Lots":
+        view_ledger = view_ledger[view_ledger["Lot"] == lot_filter]
+    if dec_filter != "All Dispositions":
+        view_ledger = view_ledger[view_ledger["Decision"] == dec_filter]
+
+    # Native Interactive Engineering Ledger
+    st.dataframe(
+        view_ledger,
+        hide_index=True,
+        use_container_width=True,
+        column_config={
+            "Component": st.column_config.TextColumn("COMPONENT", width="medium"),
+            "Lot": st.column_config.TextColumn("LOT", width="small"),
+            "Parameter": st.column_config.TextColumn("PARAMETER", width="medium"),
+            "0h": st.column_config.NumberColumn("0h", format="%.1f µA"),
+            "24h": st.column_config.NumberColumn("24h", format="%.1f µA"),
+            "96h": st.column_config.NumberColumn("96h", format="%.1f µA"),
+            "168h": st.column_config.NumberColumn("168h", format="%.1f µA"),
+            "Lot Median": st.column_config.NumberColumn("LOT MEDIAN", format="%.1f µA"),
+            "Deviation": st.column_config.NumberColumn("DEVIATION", format="%+.1f%%"),
+            "Risk": st.column_config.TextColumn("RISK", width="small"),
+            "Decision": st.column_config.TextColumn("DECISION", width="small")
+        }
+    )
+    st.caption(f"Showing {len(view_ledger)} of {len(ledger_df)} evaluated units across the 168-hour flight burn-in window.")
 
 
 # ==============================================================================
