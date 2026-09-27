@@ -875,8 +875,8 @@ elif active_section == "TRAJECTORY":
     # Styling Discipline: Thin Rules, No Heavy Grids
     ax.set_xlim(-5, 180)
     ax.set_ylim(0, max(eng_spec * 1.15, pred_168 * 1.15))
-    ax.set_xlabel("BURN-IN HOURS", fontsize=8, fontname="IBM Plex Sans", color="#666660", letter_spacing=0.12)
-    ax.set_ylabel("LEAKAGE CURRENT (µA)", fontsize=8, fontname="IBM Plex Sans", color="#666660", letter_spacing=0.12)
+    ax.set_xlabel("BURN-IN HOURS", fontsize=8, color="#666660")
+    ax.set_ylabel("LEAKAGE CURRENT (µA)", fontsize=8, color="#666660")
     ax.tick_params(axis='both', labelsize=8, colors="#666660")
 
     for spine in ax.spines.values():
