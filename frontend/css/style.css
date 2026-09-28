@@ -749,3 +749,73 @@ body {
 .btn-primary:hover {
   opacity: 0.9;
 }
+/* =========================================================
+   STREAMLIT BUTTON TEXT / ICON VISIBILITY FIX
+   ========================================================= */
+
+/* Normal buttons */
+div.stButton > button {
+    color: #ffffff !important;
+    background-color: #111827 !important;
+    border: 1px solid #374151 !important;
+    font-weight: 600 !important;
+}
+
+/* Text inside normal buttons */
+div.stButton > button p,
+div.stButton > button span {
+    color: #ffffff !important;
+}
+
+/* Hover */
+div.stButton > button:hover {
+    color: #ffffff !important;
+    background-color: #1f336e !important;
+    border-color: #3b82f6 !important;
+}
+
+/* Download buttons - EXPORT LEDGER */
+div.stDownloadButton > button {
+    color: #ffffff !important;
+    background-color: #111827 !important;
+    border: 1px solid #374151 !important;
+    font-weight: 600 !important;
+}
+
+div.stDownloadButton > button p,
+div.stDownloadButton > button span {
+    color: #ffffff !important;
+}
+
+/* Download button hover */
+div.stDownloadButton > button:hover {
+    color: #ffffff !important;
+    background-color: #1f336e !important;
+    border-color: #3b82f6 !important;
+}
+
+/* File uploader button - Upload */
+section[data-testid="stFileUploader"] button {
+    color: #ffffff !important;
+    background-color: #111827 !important;
+    border: 1px solid #374151 !important;
+    font-weight: 600 !important;
+}
+
+section[data-testid="stFileUploader"] button span,
+section[data-testid="stFileUploader"] button p {
+    color: #ffffff !important;
+}
+
+/* Upload icon */
+section[data-testid="stFileUploader"] button svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* Upload button hover */
+section[data-testid="stFileUploader"] button:hover {
+    color: #ffffff !important;
+    background-color: #1f336e !important;
+    border-color: #3b82f6 !important;
+}
