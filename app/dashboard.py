@@ -385,6 +385,66 @@ st.markdown("""
         letter-spacing: 0.08em;
         color: #8E8E86;
     }
+    /* =========================================================
+   STREAMLIT CONTROL VISIBILITY
+   ========================================================= */
+
+/* Normal Streamlit buttons */
+[data-testid="stButton"] button {
+    color: #FFFFFF !important;
+    background-color: #111827 !important;
+    border: 1px solid #374151 !important;
+    font-weight: 600 !important;
+}
+
+/* Everything inside normal buttons */
+[data-testid="stButton"] button * {
+    color: #FFFFFF !important;
+}
+
+/* Download button - EXPORT LEDGER */
+[data-testid="stDownloadButton"] button {
+    color: #FFFFFF !important;
+    background-color: #111827 !important;
+    border: 1px solid #374151 !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stDownloadButton"] button * {
+    color: #FFFFFF !important;
+}
+
+/* File uploader - Upload */
+[data-testid="stFileUploader"] button {
+    color: #FFFFFF !important;
+    background-color: #111827 !important;
+    border: 1px solid #374151 !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stFileUploader"] button * {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stFileUploader"] button svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+}
+
+/* Hover */
+[data-testid="stButton"] button:hover,
+[data-testid="stDownloadButton"] button:hover,
+[data-testid="stFileUploader"] button:hover {
+    background-color: #2D4236 !important;
+    border-color: #2D4236 !important;
+}
+
+[data-testid="stButton"] button:hover *,
+[data-testid="stDownloadButton"] button:hover *,
+[data-testid="stFileUploader"] button:hover * {
+    color: #FFFFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
