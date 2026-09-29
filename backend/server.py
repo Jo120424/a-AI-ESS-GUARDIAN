@@ -272,8 +272,54 @@ class ESSRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self._send_error(404, f"Step 5 figure not found: {fig_name}")
             return
 
+        elif path in ["/api/adaptive-screening", "/adaptive-screening"]:
+            from backend.screening.adaptive_screening import AdaptiveScreeningEngine
+            engine = AdaptiveScreeningEngine()
+            sample_eval = engine.evaluate(
+                component_id="IC_A_002",
+                lot_id="LOT_A_2026",
+                current_checkpoint="24h",
+                raw_measurements={"0h": 39.35, "24h": 38.61},
+                module_a_res={"anomaly_score": 0.832, "severity": "SEVERE", "leakage_mult_of_lot_median": 3.69, "max_robust_z": 4.12, "absolute_spec_failed": 0},
+                module_b_res={"predicted_168h": 44.60, "drift_risk_score": 0.88, "ci_lower_80": 39.1, "ci_upper_80": 48.2},
+                safety_env_res={"early_slope": 0.34, "healthy_envelope_max_early_slope": 0.05, "data_driven_prototype_limit": 45.0, "engineering_limit": 50.0},
+                decision_res={"final_decision": "REVIEW"}
+            )
+            self._send_json(sample_eval)
+            return
+
         # Serve static frontend files
         return super().do_GET()
+
+    def do_POST(self):
+        parsed_url = urllib.parse.urlparse(self.path)
+        path = parsed_url.path
+
+        if path in ["/api/adaptive-screening", "/adaptive-screening"]:
+            try:
+                content_len = int(self.headers.get("Content-Length", 0))
+                post_body = self.rfile.read(content_len) if content_len > 0 else b"{}"
+                payload = json.loads(post_body.decode("utf-8")) if post_body else {}
+
+                from backend.screening.adaptive_screening import AdaptiveScreeningEngine
+                engine = AdaptiveScreeningEngine()
+                res = engine.evaluate(
+                    component_id=payload.get("component_id", "UNKNOWN"),
+                    lot_id=payload.get("lot_id", "UNKNOWN_LOT"),
+                    current_checkpoint=payload.get("current_checkpoint", "24h"),
+                    raw_measurements=payload.get("raw_measurements"),
+                    module_a_res=payload.get("module_a_res"),
+                    module_b_res=payload.get("module_b_res"),
+                    safety_env_res=payload.get("safety_env_res"),
+                    decision_res=payload.get("decision_res"),
+                    data_quality=payload.get("data_quality")
+                )
+                self._send_json(res)
+            except Exception as e:
+                self._send_error(400, f"Adaptive screening evaluation failed: {e}")
+            return
+        else:
+            self._send_error(404, "Endpoint not found")
 
     def _send_json(self, data, status=200):
         body = json.dumps(data, indent=2).encode("utf-8")

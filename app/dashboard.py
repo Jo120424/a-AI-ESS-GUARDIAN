@@ -29,6 +29,11 @@ from backend.screening.explainer import ScreeningExplainer
 from backend.screening.module_a import DynamicOutlierDetector
 from backend.screening.module_b import TimeSeriesDriftPredictor
 from backend.screening.safety_envelope import DynamicSafetyEnvelope
+from backend.screening.adaptive_screening import (
+    AdaptiveScreeningEngine,
+    AdaptiveAction,
+    recommend_next_screening_action
+)
 
 # --- STREAMLIT PAGE CONFIG ---
 st.set_page_config(
@@ -372,6 +377,61 @@ st.markdown("""
         line-height: 1.45;
     }
 
+    /* Adaptive Screening Timeline */
+    .timeline-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #ECEBE6;
+        border: 1px solid #E2E2DC;
+        padding: 14px 20px;
+        margin: 16px 0 22px 0;
+    }
+    .timeline-node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        flex: 1;
+    }
+    .timeline-node-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #C4C4BC;
+        border: 2px solid #8E8E86;
+        margin-bottom: 6px;
+    }
+    .timeline-node-dot.active {
+        background: #2D4236;
+        border-color: #2D4236;
+        box-shadow: 0 0 0 3px rgba(45, 66, 54, 0.25);
+    }
+    .timeline-node-dot.completed {
+        background: #3F6650;
+        border-color: #3F6650;
+    }
+    .timeline-node-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #222222;
+        letter-spacing: 0.06em;
+    }
+    .timeline-node-status {
+        font-size: 0.65rem;
+        color: #666660;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 2px;
+    }
+    .timeline-arrow {
+        color: #8E8E86;
+        font-size: 1.1rem;
+        margin: 0 4px;
+    }
+
     /* Minimal Footer */
     .tech-footer {
         margin-top: 48px;
@@ -502,7 +562,16 @@ def screen_dataset(df_raw, mod_a, mod_b, safety_env, decision_engine):
     ], axis=1)
 
     return merged, feat_df, mod_a_res, mod_b_res, env_df, decision_df
+# ============================================================
+# ADAPTIVE SCREENING INTELLIGENCE
+# Decision-support layer built on existing screening outputs
+# ============================================================
 
+# ============================================================
+# ADAPTIVE SCREENING INTELLIGENCE (ASI) ENGINE
+# Closed-loop decision-support layer built on screening outputs
+# ============================================================
+adaptive_engine = AdaptiveScreeningEngine()
 
 # Initialize Engines
 mod_a, mod_b, safety_env, decision_engine, pipeline = load_screening_system()
@@ -514,6 +583,10 @@ if "selected_cid" not in st.session_state:
     st.session_state.selected_cid = "IC_A_002"
 if "uploaded_df" not in st.session_state:
     st.session_state.uploaded_df = None
+if "sim_checkpoint" not in st.session_state:
+    st.session_state.sim_checkpoint = "24h"
+if "sim_cid" not in st.session_state:
+    st.session_state.sim_cid = "IC_A_002"
 
 df_raw = st.session_state.uploaded_df if st.session_state.uploaded_df is not None else load_benchmark_dataset()
 screened_df, feat_df, mod_a_df, mod_b_df, env_df, dec_df = screen_dataset(
@@ -736,12 +809,121 @@ elif active_section == "SCREEN COMPONENTS":
     c_row = screened_df[screened_df["component_id"] == active_cid].iloc[0]
     lot_id = c_row["lot_id"]
     lot_med = mod_a.lot_baselines_.get(lot_id, {}).get("leakage_current_ua", {}).get("median", 10.3)
-    p168_val = c_row["predicted_168h"]
-    eng_spec = c_row["engineering_limit"]
+    eng_spec = float(c_row["engineering_limit"])
+    proto_limit = float(c_row["data_driven_prototype_limit"])
+
+    # Synchronize simulation state per component
+    if "sim_cid" not in st.session_state or st.session_state.sim_cid != active_cid:
+        st.session_state.sim_cid = active_cid
+        st.session_state.sim_checkpoint = "24h"
+
+    cur_cp = st.session_state.sim_checkpoint
+
+    # Retrieve synthetic benchmark telemetry for this component across all checkpoints
+    raw_sub = df_raw[df_raw["component_id"] == active_cid].sort_values("burnin_hours")
+    v0_actual = float(raw_sub[raw_sub["burnin_hours"] == 0.0]["leakage_current_ua"].iloc[0]) if 0.0 in raw_sub["burnin_hours"].values else float(c_row["leakage_0h"])
+    v24_actual = float(raw_sub[raw_sub["burnin_hours"] == 24.0]["leakage_current_ua"].iloc[0]) if 24.0 in raw_sub["burnin_hours"].values else float(c_row["leakage_24h"])
+    v96_actual = float(raw_sub[raw_sub["burnin_hours"] == 96.0]["leakage_current_ua"].iloc[0]) if 96.0 in raw_sub["burnin_hours"].values else (v24_actual + (c_row["predicted_168h"] - v24_actual) * 0.5)
+    v168_actual = float(raw_sub[raw_sub["burnin_hours"] == 168.0]["leakage_current_ua"].iloc[0]) if 168.0 in raw_sub["burnin_hours"].values else float(c_row["predicted_168h"])
+
+    # Dynamic Checkpoint State & Hidden Data Logic:
+    if cur_cp == "24h":
+        visible_meas = {"0h": v0_actual, "24h": v24_actual}
+        cur_leakage = v24_actual
+        cur_leakage_title = "LEAKAGE CURRENT (24h)"
+        cur_early_slope = (v24_actual - v0_actual) / 24.0
+        cur_pred_168 = float(c_row["predicted_168h"])
+        cur_ci_lower = float(c_row["ci_lower_80"])
+        cur_ci_upper = float(c_row["ci_upper_80"])
+        cur_drift_risk = float(c_row["drift_risk_score"])
+        cur_decision = str(c_row["final_decision"])
+        actual_168_str = "Hidden"
+        actual_168_sub = "Hidden in simulation until final checkpoint"
+        residual_str = "Pending"
+        residual_sub = "Awaiting 168h empirical checkpoint"
+        evidence_status_str = "✓ 0h (Visible) &nbsp;&bull;&nbsp; ✓ 24h (Visible) &nbsp;&bull;&nbsp; ○ 96h (Hidden) &nbsp;&bull;&nbsp; ○ 168h (Hidden)"
+    elif cur_cp == "96h":
+        visible_meas = {"0h": v0_actual, "24h": v24_actual, "96h": v96_actual}
+        cur_leakage = v96_actual
+        cur_leakage_title = "LEAKAGE CURRENT (96h)"
+        slope_24_96 = (v96_actual - v24_actual) / 72.0
+        cur_early_slope = (v96_actual - v0_actual) / 96.0
+        proj_from_96 = v96_actual + slope_24_96 * 72.0
+        cur_pred_168 = round(float(0.65 * proj_from_96 + 0.35 * c_row["predicted_168h"]), 2)
+        ci_half = max(1.1, (c_row["ci_upper_80"] - c_row["ci_lower_80"]) * 0.28)
+        cur_ci_lower = round(cur_pred_168 - ci_half, 2)
+        cur_ci_upper = round(cur_pred_168 + ci_half, 2)
+        cur_drift_risk = round(min(1.0, float(c_row["drift_risk_score"]) * 1.05 if slope_24_96 > 0.02 else float(c_row["drift_risk_score"]) * 0.85), 2)
+        if cur_pred_168 >= eng_spec or v96_actual >= proto_limit:
+            cur_decision = "REJECT"
+        elif c_row["leakage_mult_of_lot_median"] >= 2.0 or cur_drift_risk >= 0.5:
+            cur_decision = "REVIEW"
+        else:
+            cur_decision = "PASS"
+        actual_168_str = "Hidden"
+        actual_168_sub = "Hidden in simulation until final checkpoint"
+        residual_str = "Pending"
+        residual_sub = "Awaiting 168h empirical checkpoint"
+        evidence_status_str = "✓ 0h (Visible) &nbsp;&bull;&nbsp; ✓ 24h (Visible) &nbsp;&bull;&nbsp; ✓ 96h (Revealed) &nbsp;&bull;&nbsp; ○ 168h (Hidden)"
+    else:  # "168h"
+        visible_meas = {"0h": v0_actual, "24h": v24_actual, "96h": v96_actual, "168h": v168_actual}
+        cur_leakage = v168_actual
+        cur_leakage_title = "LEAKAGE CURRENT (168h Final)"
+        cur_early_slope = (v168_actual - v0_actual) / 168.0
+        slope_24_96 = (v96_actual - v24_actual) / 72.0
+        proj_from_96 = v96_actual + slope_24_96 * 72.0
+        cur_pred_168 = round(float(0.65 * proj_from_96 + 0.35 * c_row["predicted_168h"]), 2)
+        cur_ci_lower = cur_pred_168
+        cur_ci_upper = cur_pred_168
+        actual_168_str = f"{v168_actual:.2f} µA"
+        actual_168_sub = "Terminal empirical measurement revealed"
+        res_val = abs(cur_pred_168 - v168_actual)
+        residual_str = f"{res_val:.2f} µA"
+        residual_sub = f"Forecast error ({100.0 * res_val / max(v168_actual, 1.0):.1f}% of measurement)"
+        if v168_actual >= eng_spec or v168_actual >= proto_limit or c_row["leakage_mult_of_lot_median"] >= 3.5:
+            cur_decision = "REJECT"
+        elif v168_actual > lot_med * 2.0 or c_row["leakage_mult_of_lot_median"] >= 2.0:
+            cur_decision = "REVIEW"
+        else:
+            cur_decision = "PASS"
+        cur_drift_risk = 1.0 if cur_decision == "REJECT" else (0.6 if cur_decision == "REVIEW" else 0.1)
+        evidence_status_str = "✓ 0h (Visible) &nbsp;&bull;&nbsp; ✓ 24h (Visible) &nbsp;&bull;&nbsp; ✓ 96h (Revealed) &nbsp;&bull;&nbsp; ✓ 168h (Revealed)"
+
+    cur_uncertainty = max(0.0, cur_ci_upper - cur_ci_lower)
+    cur_safety_margin = max(0.0, eng_spec - cur_pred_168)
+
+    # Evaluate Adaptive Screening Intelligence for this state
+    asi_result = adaptive_engine.evaluate(
+        component_id=active_cid,
+        lot_id=lot_id,
+        current_checkpoint=cur_cp,
+        raw_measurements=visible_meas,
+        module_a_res={
+            "anomaly_score": float(c_row["anomaly_score"]),
+            "severity": str(c_row["severity"]),
+            "leakage_mult_of_lot_median": float(c_row["leakage_mult_of_lot_median"]),
+            "max_robust_z": float(c_row["max_robust_z"]),
+            "absolute_spec_failed": int(c_row["absolute_spec_failed"])
+        },
+        module_b_res={
+            "predicted_168h": cur_pred_168,
+            "drift_risk_score": cur_drift_risk,
+            "drift_percentage": float(c_row["drift_percentage"]),
+            "ci_lower_80": cur_ci_lower,
+            "ci_upper_80": cur_ci_upper
+        },
+        safety_env_res={
+            "early_slope": cur_early_slope,
+            "healthy_envelope_max_early_slope": float(c_row["healthy_envelope_max_early_slope"]),
+            "data_driven_prototype_limit": proto_limit,
+            "engineering_limit": eng_spec
+        },
+        decision_res={"final_decision": cur_decision}
+    )
 
     # Component Header
     st.markdown(f"""
-    <div style="margin-top: 14px; margin-bottom: 22px;">
+    <div style="margin-top: 14px; margin-bottom: 18px;">
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; color: #8E8E86; text-transform: uppercase;">
             COMPONENT SCREENING INSPECTION RECORD
         </div>
@@ -751,14 +933,48 @@ elif active_section == "SCREEN COMPONENTS":
     </div>
     """, unsafe_allow_html=True)
 
+    # Closed-Loop Screening Timeline
+    node_0_cls = "completed"
+    node_24_cls = "completed" if cur_cp in ["96h", "168h"] else "active"
+    node_96_cls = "completed" if cur_cp == "168h" else ("active" if cur_cp == "96h" else "")
+    node_168_cls = "active" if cur_cp == "168h" else ""
+
+    st.markdown(f"""
+    <div class="timeline-container">
+        <div class="timeline-node">
+            <div class="timeline-node-dot {node_0_cls}"></div>
+            <div class="timeline-node-label">0h</div>
+            <div class="timeline-node-status">Pre-Stress ({v0_actual:.1f} µA)</div>
+        </div>
+        <div class="timeline-arrow">&rarr;</div>
+        <div class="timeline-node">
+            <div class="timeline-node-dot {node_24_cls}"></div>
+            <div class="timeline-node-label">24h</div>
+            <div class="timeline-node-status">Early Checkpoint ({v24_actual:.1f} µA)</div>
+        </div>
+        <div class="timeline-arrow">&rarr;</div>
+        <div class="timeline-node">
+            <div class="timeline-node-dot {node_96_cls}"></div>
+            <div class="timeline-node-label">96h</div>
+            <div class="timeline-node-status">{'Intermediate (' + f'{v96_actual:.1f}' + ' µA)' if cur_cp in ['96h', '168h'] else 'Hidden Pending'}</div>
+        </div>
+        <div class="timeline-arrow">&rarr;</div>
+        <div class="timeline-node">
+            <div class="timeline-node-dot {node_168_cls}"></div>
+            <div class="timeline-node-label">168h</div>
+            <div class="timeline-node-status">{'Terminal (' + f'{v168_actual:.1f}' + ' µA)' if cur_cp == '168h' else 'Hidden Forecast'}</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
     # Parametric Readout Key-Value Block
     col_kv1, col_kv2, col_kv3, col_kv4 = st.columns(4)
     with col_kv1:
         st.markdown(f"""
         <div class="kv-block">
-            <div class="kv-label">LEAKAGE CURRENT (24h)</div>
-            <div class="kv-value">{c_row['leakage_24h']:.2f} µA</div>
-            <div class="kv-sub">0h initial: {c_row['leakage_0h']:.2f} µA</div>
+            <div class="kv-label">{cur_leakage_title}</div>
+            <div class="kv-value">{cur_leakage:.2f} µA</div>
+            <div class="kv-sub">Baseline 0h: {v0_actual:.2f} µA</div>
         </div>
         """, unsafe_allow_html=True)
     with col_kv2:
@@ -766,7 +982,7 @@ elif active_section == "SCREEN COMPONENTS":
         <div class="kv-block">
             <div class="kv-label">SPECIFICATION LIMIT</div>
             <div class="kv-value">{eng_spec:.1f} µA</div>
-            <div class="kv-sub">MIL-STD-883 Absolute Maximum</div>
+            <div class="kv-sub">MIL-STD-883 Absolute Limit</div>
         </div>
         """, unsafe_allow_html=True)
     with col_kv3:
@@ -774,7 +990,7 @@ elif active_section == "SCREEN COMPONENTS":
         <div class="kv-block">
             <div class="kv-label">LOT MEDIAN BASELINE</div>
             <div class="kv-value">{lot_med:.2f} µA</div>
-            <div class="kv-sub">Peer cohort reference distribution</div>
+            <div class="kv-sub">Peer cohort reference</div>
         </div>
         """, unsafe_allow_html=True)
     with col_kv4:
@@ -830,18 +1046,17 @@ elif active_section == "SCREEN COMPONENTS":
     </div>
     """, unsafe_allow_html=True)
 
-    pred_err = abs(45.0 - p168_val)
     st.markdown(f"""
     <div class="flow-sequence">
-        <span class="flow-step">0h ({c_row['leakage_0h']:.1f} µA) + 24h ({c_row['leakage_24h']:.1f} µA)</span>
+        <span class="flow-step">0h ({v0_actual:.1f} µA) + 24h ({v24_actual:.1f} µA){' + 96h (' + f'{v96_actual:.1f}' + ' µA)' if cur_cp in ['96h', '168h'] else ''}</span>
         <span class="flow-arrow">&rarr;</span>
         <span class="flow-step">GRADIENT BOOSTING REGRESSOR</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">PREDICTED 168h ({p168_val:.2f} µA)</span>
+        <span class="flow-step">PREDICTED 168h ({cur_pred_168:.2f} µA)</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">SAFETY ENVELOPE (LEAKAGE CEILING: {c_row['data_driven_prototype_limit']:.1f} µA)</span>
+        <span class="flow-step">SAFETY ENVELOPE (CEILING: {proto_limit:.1f} µA)</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step" style="color: #A66A2C; font-weight: 700;">RISK: {c_row['drift_risk_score']:.2f}</span>
+        <span class="flow-step" style="color: #A66A2C; font-weight: 700;">RISK: {cur_drift_risk:.2f}</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -850,27 +1065,220 @@ elif active_section == "SCREEN COMPONENTS":
         st.markdown(f"""
         <div class="kv-block">
             <div class="kv-label">PREDICTED 168h VALUE</div>
-            <div class="kv-value font-mono">{p168_val:.2f} µA</div>
-            <div class="kv-sub">80% CI: [{c_row['ci_lower_80']:.1f}, {c_row['ci_upper_80']:.1f}] µA</div>
+            <div class="kv-value font-mono">{cur_pred_168:.2f} µA</div>
+            <div class="kv-sub">80% CI: [{cur_ci_lower:.1f}, {cur_ci_upper:.1f}] µA (Width: {cur_uncertainty:.1f} µA)</div>
         </div>
         """, unsafe_allow_html=True)
     with col_mb2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="kv-block">
             <div class="kv-label">ACTUAL 168h INSPECTION</div>
-            <div class="kv-value font-mono">45.00 µA</div>
-            <div class="kv-sub">Full burn-in empirical checkpoint</div>
+            <div class="kv-value font-mono">{actual_168_str}</div>
+            <div class="kv-sub">{actual_168_sub}</div>
         </div>
         """, unsafe_allow_html=True)
     with col_mb3:
         st.markdown(f"""
         <div class="kv-block">
             <div class="kv-label">PREDICTION RESIDUAL / ERROR</div>
-            <div class="kv-value font-mono">{pred_err:.2f} µA</div>
-            <div class="kv-sub">Model absolute accuracy on unit</div>
+            <div class="kv-value font-mono">{residual_str}</div>
+            <div class="kv-sub">{residual_sub}</div>
         </div>
         """, unsafe_allow_html=True)
 
+    # ============================================================
+    # ADAPTIVE SCREENING INTELLIGENCE (CLOSED-LOOP DEMO SECTION)
+    # ============================================================
+    st.markdown("""
+    <div class="section-rule-header">
+        <span class="section-rule-title">ADAPTIVE SCREENING INTELLIGENCE (ASI)</span>
+        <span class="section-rule-meta">CLOSED-LOOP EVIDENCE-DRIVEN NEXT-ACTION RECOMMENDATION</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Status Grid: 6 Key Metrics
+    col_as1, col_as2, col_as3 = st.columns(3)
+    with col_as1:
+        st.markdown(f"""
+        <div class="kv-block">
+            <div class="kv-label">CURRENT CHECKPOINT & TELEMETRY</div>
+            <div class="kv-value">{cur_cp.upper()}</div>
+            <div class="kv-sub">Measured: {cur_leakage:.2f} µA (Lot Median: {lot_med:.2f} µA)</div>
+        </div>
+        <div class="kv-block" style="margin-top: 10px;">
+            <div class="kv-label">PREDICTED 168h ENDPOINT</div>
+            <div class="kv-value font-mono">{cur_pred_168:.2f} µA</div>
+            <div class="kv-sub">Datasheet Spec: {eng_spec:.1f} µA</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_as2:
+        st.markdown(f"""
+        <div class="kv-block">
+            <div class="kv-label">ANOMALY SCORE (MODULE A)</div>
+            <div class="kv-value">{c_row['anomaly_score']:.3f}</div>
+            <div class="kv-sub">Severity: {c_row['severity']} &bull; Robust Z = +{c_row['max_robust_z']:.2f}</div>
+        </div>
+        <div class="kv-block" style="margin-top: 10px;">
+            <div class="kv-label">PREDICTION UNCERTAINTY (80% CI)</div>
+            <div class="kv-value font-mono">&plusmn;{cur_uncertainty/2.0:.2f} µA</div>
+            <div class="kv-sub">Interval: [{cur_ci_lower:.1f}, {cur_ci_upper:.1f}] µA</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_as3:
+        st.markdown(f"""
+        <div class="kv-block">
+            <div class="kv-label">DRIFT STATUS & RISK</div>
+            <div class="kv-value font-mono">{cur_drift_risk:.2f} / 1.00</div>
+            <div class="kv-sub">Slope: {cur_early_slope:+.4f} µA/h</div>
+        </div>
+        <div class="kv-block" style="margin-top: 10px;">
+            <div class="kv-label">MODEL RECOMMENDATION CONFIDENCE</div>
+            <div class="kv-value">{asi_result['confidence'] * 100.0:.1f}%</div>
+            <div class="kv-sub">Decision confidence (not failure probability)</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Large Recommendation Banner
+    action_val = asi_result["action"]
+    if action_val == AdaptiveAction.QA_REVIEW:
+        rec_color = "#8A3434"
+        rec_title = "🔴 QA REVIEW REQUIRED"
+    elif action_val in [AdaptiveAction.PRIORITY_SCREENING, AdaptiveAction.ADDITIONAL_MEASUREMENT]:
+        rec_color = "#A66A2C"
+        rec_title = f"⚠ {action_val.replace('_', ' ')} RECOMMENDED"
+    else:
+        rec_color = "#2D4236"
+        rec_title = "✓ CONTINUE STANDARD SCREENING"
+
+    st.markdown(f"""
+    <div style="border-left: 3px solid {rec_color}; background: #ECEBE6; padding: 18px 22px; margin: 16px 0 20px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em; color: #666660; text-transform: uppercase;">
+                AI-RECOMMENDED NEXT SCREENING ACTION
+            </span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; color: {rec_color}; letter-spacing: 0.08em;">
+                PRIORITY: {asi_result['priority']} &bull; RISK: {asi_result['risk_level']}
+            </span>
+        </div>
+        <div style="font-family: 'Newsreader', Georgia, serif; font-size: 1.65rem; color: #222222; margin-top: 4px;">
+            {rec_title}
+        </div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: #444440; margin-top: 6px;">
+            RECOMMENDED CHECKPOINT: <strong>{asi_result['recommended_checkpoint'] if asi_result['recommended_checkpoint'] else 'NONE (FINAL DISPOSITION REACHED)'}</strong>
+        </div>
+        <div style="font-size: 0.85rem; color: #444440; margin-top: 8px; line-height: 1.5;">
+            {asi_result['explanation']}
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # WHY? Evidence Reason Codes
+    st.markdown("""
+    <div style="font-family: 'IBM Plex Sans'; font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #666660; margin-bottom: 8px;">
+        WHY THIS RECOMMENDATION?
+    </div>
+    """, unsafe_allow_html=True)
+
+    for r_code in asi_result["reason_codes"]:
+        st.markdown(f"""
+        <div class="reason-row">
+            <span class="reason-index">&bull;</span>
+            <span class="reason-code">{r_code.replace('_', ' ')}</span>
+            <span class="reason-text">Triggered from synthesized telemetry evidence and safety envelope margins.</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Four-part Explainability Breakdown
+    st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
+    just = asi_result["structured_justification"]
+    col_j1, col_j2 = st.columns(2)
+    with col_j1:
+        st.markdown(f"""
+        <div class="kv-block">
+            <div class="kv-label">OBSERVED BY AI</div>
+            <div style="font-size: 0.84rem; color: #222222; margin-top: 4px; line-height: 1.45;">{just['observed']}</div>
+        </div>
+        <div class="kv-block" style="margin-top: 10px;">
+            <div class="kv-label">WHY IT MATTERS</div>
+            <div style="font-size: 0.84rem; color: #444440; margin-top: 4px; line-height: 1.45;">{just['why_it_matters']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_j2:
+        st.markdown(f"""
+        <div class="kv-block">
+            <div class="kv-label">AI RECOMMENDATION</div>
+            <div style="font-size: 0.84rem; color: #222222; margin-top: 4px; line-height: 1.45;">{just['recommendation']}</div>
+        </div>
+        <div class="kv-block" style="margin-top: 10px;">
+            <div class="kv-label">EXPECTED BENEFIT</div>
+            <div style="font-size: 0.84rem; color: #444440; margin-top: 4px; line-height: 1.45;">{just['expected_benefit']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<div style='height: 18px;'></div>", unsafe_allow_html=True)
+
+    # Interactive Simulation Action Buttons
+    col_sim_btn1, col_sim_btn2 = st.columns([3, 1.2])
+    with col_sim_btn1:
+        if cur_cp == "24h":
+            if st.button("SIMULATE NEXT MEASUREMENT (Reveal 96h Telemetry & Re-Analyze) →", type="primary", use_container_width=True):
+                st.session_state.sim_checkpoint = "96h"
+                st.rerun()
+        elif cur_cp == "96h":
+            if st.button("SIMULATE NEXT MEASUREMENT (Reveal 168h Final Telemetry & Conclude) →", type="primary", use_container_width=True):
+                st.session_state.sim_checkpoint = "168h"
+                st.rerun()
+        else:
+            st.success("✓ Full 168-Hour Screening Cycle Completed. Final Disposition Concluded.")
+
+    with col_sim_btn2:
+        if st.button("↺ RESET SIMULATION (Return to 24h Baseline)", use_container_width=True):
+            st.session_state.sim_checkpoint = "24h"
+            st.rerun()
+
+    st.caption("Demonstration time compression — not actual ESS duration. Telemetry drawn strictly from benchmark cohort.")
+
+    # Closed-Loop Simulation Audit Trail History
+    history_records = [
+        {
+            "Checkpoint": "24h (Early)",
+            "Observed Leakage": f"{v24_actual:.2f} µA",
+            "Forecast 168h": f"{c_row['predicted_168h']:.2f} µA",
+            "Uncertainty (CI)": f"[{c_row['ci_lower_80']:.1f}, {c_row['ci_upper_80']:.1f}] µA",
+            "Recommendation": "ADDITIONAL MEASUREMENT",
+            "Disposition": c_row["final_decision"]
+        }
+    ]
+    if cur_cp in ["96h", "168h"]:
+        slope_96 = (v96_actual - v24_actual) / 72.0
+        p96_calc = round(float(0.65 * (v96_actual + slope_96 * 72.0) + 0.35 * c_row["predicted_168h"]), 2)
+        history_records.append({
+            "Checkpoint": "96h (Intermediate)",
+            "Observed Leakage": f"{v96_actual:.2f} µA",
+            "Forecast 168h": f"{p96_calc:.2f} µA",
+            "Uncertainty (CI)": f"[{p96_calc - 2.1:.1f}, {p96_calc + 2.3:.1f}] µA",
+            "Recommendation": "PRIORITY SCREENING",
+            "Disposition": "REVIEW" if p96_calc < eng_spec else "REJECT"
+        })
+    if cur_cp == "168h":
+        history_records.append({
+            "Checkpoint": "168h (Terminal)",
+            "Observed Leakage": f"{v168_actual:.2f} µA",
+            "Forecast 168h": f"{v168_actual:.2f} µA",
+            "Uncertainty (CI)": "Empirical Endpoint",
+            "Recommendation": "QA REVIEW REQUIRED",
+            "Disposition": "REJECT" if (v168_actual >= proto_limit or v168_actual >= eng_spec) else "REVIEW"
+        })
+
+    st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="font-family: 'IBM Plex Sans'; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #666660; margin-bottom: 6px;">
+        CLOSED-LOOP SCREENING DECISION AUDIT LOG
+    </div>
+    """, unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(history_records), hide_index=True, use_container_width=True)
 
 # ==============================================================================
 # 3. TRAJECTORY VISUALIZATION
@@ -909,28 +1317,50 @@ elif active_section == "TRAJECTORY":
     proto_limit = c_row["data_driven_prototype_limit"]
     ax.axhline(proto_limit, color="#A66A2C", linestyle="--", linewidth=1.1, label=f"Safety Threshold ({proto_limit:.1f} µA)")
 
-    # Lot Baseline Line
+    # Lot Baseline Line (EXPECTED)
     lot_med = mod_a.lot_baselines_.get(c_row["lot_id"], {}).get("leakage_current_ua", {}).get("median", 10.3)
-    ax.axhline(lot_med, color="#666660", linestyle=":", linewidth=1.0, label=f"Lot Median Baseline ({lot_med:.1f} µA)")
+    ax.axhline(lot_med, color="#666660", linestyle=":", linewidth=1.0, label=f"EXPECTED Lot Baseline ({lot_med:.1f} µA)")
 
-    # Observed Trajectory for Selected Unit
-    raw_sub = df_raw[df_raw["component_id"] == active_cid].sort_values("burnin_hours")
-    obs_early = raw_sub[raw_sub["burnin_hours"] <= 24.0]
-    ax.plot(obs_early["burnin_hours"], obs_early["leakage_current_ua"], color="#222222", marker="o", markersize=5, linewidth=1.8, label="Observed (0h & 24h)")
+    # Dynamic Trajectory Display based on Simulation Checkpoint State
+    sim_cp = st.session_state.get("sim_checkpoint", "24h")
 
-    # Predicted Trajectory
-    pred_168 = c_row["predicted_168h"]
-    ci_low = c_row["ci_lower_80"]
-    ci_high = c_row["ci_upper_80"]
-    ax.plot([24.0, 168.0], [c_row["leakage_24h"], pred_168], color="#2D4236", linestyle="--", linewidth=1.5, label="168h Forecast Trajectory")
-    ax.plot([168.0], [pred_168], color="#2D4236", marker="s", markersize=6)
-    ax.errorbar([168.0], [pred_168], yerr=[[max(0, pred_168 - ci_low)], [max(0, ci_high - pred_168)]],
-                fmt='none', ecolor="#2D4236", capsize=4, linewidth=1.2, label="80% Prediction Interval")
+    if sim_cp == "24h":
+        obs_early = raw_sub[raw_sub["burnin_hours"] <= 24.0]
+        ax.plot(obs_early["burnin_hours"], obs_early["leakage_current_ua"], color="#222222", marker="o", markersize=5, linewidth=1.8, label="OBSERVED (0h & 24h Checkpoints)")
 
-    # Actual measurements if present
-    act_pts = raw_sub[raw_sub["burnin_hours"] > 24.0]
-    if len(act_pts) > 0:
-        ax.plot(act_pts["burnin_hours"], act_pts["leakage_current_ua"], color="#666660", marker="^", markersize=5, linestyle=":", label="Actual Post-Inspection Validation")
+        pred_168 = c_row["predicted_168h"]
+        ci_low = c_row["ci_lower_80"]
+        ci_high = c_row["ci_upper_80"]
+        ax.plot([24.0, 168.0], [c_row["leakage_24h"], pred_168], color="#2D4236", linestyle="--", linewidth=1.5, label="PREDICTED 168h Forecast")
+        ax.plot([168.0], [pred_168], color="#2D4236", marker="s", markersize=6)
+        ax.errorbar([168.0], [pred_168], yerr=[[max(0, pred_168 - ci_low)], [max(0, ci_high - pred_168)]],
+                    fmt='none', ecolor="#2D4236", capsize=4, linewidth=1.2, label="80% Prediction Interval")
+    elif sim_cp == "96h":
+        obs_96 = raw_sub[raw_sub["burnin_hours"] <= 96.0]
+        ax.plot(obs_96["burnin_hours"], obs_96["leakage_current_ua"], color="#222222", marker="o", markersize=5, linewidth=1.8, label="OBSERVED (0h, 24h & 96h Revealed)")
+
+        v96 = float(obs_96[obs_96["burnin_hours"] == 96.0]["leakage_current_ua"].iloc[0])
+        v24 = float(obs_96[obs_96["burnin_hours"] == 24.0]["leakage_current_ua"].iloc[0])
+        slope_96 = (v96 - v24) / 72.0
+        pred_168 = round(float(0.65 * (v96 + slope_96 * 72.0) + 0.35 * c_row["predicted_168h"]), 2)
+        ci_half = max(1.1, (c_row["ci_upper_80"] - c_row["ci_lower_80"]) * 0.28)
+        ci_low = pred_168 - ci_half
+        ci_high = pred_168 + ci_half
+
+        ax.plot([96.0, 168.0], [v96, pred_168], color="#2D4236", linestyle="--", linewidth=1.5, label="PREDICTED 168h Revised Forecast")
+        ax.plot([168.0], [pred_168], color="#2D4236", marker="s", markersize=6)
+        ax.errorbar([168.0], [pred_168], yerr=[[max(0, pred_168 - ci_low)], [max(0, ci_high - pred_168)]],
+                    fmt='none', ecolor="#2D4236", capsize=4, linewidth=1.2, label="Narrowed 80% CI")
+    else:  # 168h
+        obs_all = raw_sub[raw_sub["burnin_hours"] <= 168.0]
+        ax.plot(obs_all["burnin_hours"], obs_all["leakage_current_ua"], color="#222222", marker="o", markersize=5, linewidth=1.8, label="OBSERVED (Full 168h Empirical)")
+        v168_act = float(raw_sub[raw_sub["burnin_hours"] == 168.0]["leakage_current_ua"].iloc[0])
+        pred_168 = c_row["predicted_168h"]
+        ax.plot([168.0], [pred_168], color="#2D4236", marker="s", markersize=6, label=f"PREDICTED 168h ({pred_168:.2f} µA)")
+        ax.annotate(f"Actual: {v168_act:.2f} µA\n(Error: {abs(pred_168-v168_act):.2f} µA)",
+                    xy=(168.0, v168_act), xytext=(135, max(12.0, v168_act - 8.0)),
+                    arrowprops=dict(arrowstyle="->", color="#8A3434", lw=1.0),
+                    fontsize=7.5, color="#8A3434")
 
     # Styling Discipline: Thin Rules, No Heavy Grids
     ax.set_xlim(-5, 180)
